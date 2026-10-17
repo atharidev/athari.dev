@@ -11,6 +11,7 @@
   const renderState = () => {
     toggle.hidden = reduced.matches;
     artwork.toggleAttribute('data-paused', paused || document.hidden);
+    document.documentElement.toggleAttribute('data-motion-paused', paused || document.hidden);
     toggle.setAttribute('aria-pressed', String(paused));
     toggle.setAttribute('aria-label', paused ? 'Play artwork motion' : 'Pause artwork motion');
   };
@@ -37,6 +38,7 @@
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(entries => {
       artwork.toggleAttribute('data-offscreen', !entries[0].isIntersecting);
+      document.documentElement.toggleAttribute('data-art-offscreen', !entries[0].isIntersecting);
     }).observe(artwork);
   }
 })();
