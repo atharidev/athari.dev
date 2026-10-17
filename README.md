@@ -1,20 +1,16 @@
 # athari.dev
 
-The growing project index for [athari.dev](https://athari.dev), served from the repository root with GitHub Pages.
+The personal homepage at [athari.dev](https://athari.dev): software, AI and cloud, business development, consultancy, open source, and community.
 
-## Add a project
+A lightweight static site served from the repository root by GitHub Pages. No framework, build step, external runtime dependencies, tracking, or project listing.
 
-Add one object to `projects.js`. The homepage automatically renders the card and updates the live-project count. Each entry contains its name, URL, short copy, tags, visual treatment, and accent colors.
+- `index.html`: semantic page content and social metadata
+- `style.css`: responsive layout, typography, motion, and accessibility preferences
+- `site.js`: artwork controls, pointer interaction, visibility handling, and footer year
+- `assets/ripple.svg`: original mathematical wire sculpture
+- `assets/manrope.woff2`: self-hosted Manrope typeface (see its OFL license)
+- `og.png`: social preview
+- `favicon.svg`: site mark
+- `CNAME`: existing custom domain
 
-## Structure
-
-- `projects.js` — the project registry
-- `index.html` — the responsive project-index experience
-- `favicon.svg` — browser icon
-- `og.png` — social preview image
-- `404.html` — redirects unknown paths home
-- `CNAME` — custom-domain mapping
-
-## Deployment
-
-The `main` branch is published with GitHub Pages. The apex domain points to GitHub Pages and `www` redirects to the apex.
+Push to `main` to publish through the existing GitHub Pages setup. All content and navigation remain usable without JavaScript. Motion honors the system reduced-motion preference and can be paused. Animations pause off screen and in background tabs.
