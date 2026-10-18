@@ -6,9 +6,11 @@
   const button = form.querySelector('button[type="submit"]');
   const label = button.querySelector('.contact-submit-label');
   const status = document.querySelector('#contact-status');
+  const standard = document.querySelector('#contact-standard');
   const success = document.querySelector('#contact-success');
   let pending = false;
   form.addEventListener('submit', async event => {
+    if (standard && event.submitter === standard && !pending) return;
     event.preventDefault();
     if (pending || !form.reportValidity()) return;
     // A filled honeypot is ignored without sending a notification.
@@ -39,6 +41,7 @@
       success.hidden = false;
       success.querySelector('h3').focus({ preventScroll: true });
     } catch {
+      if (standard) standard.hidden = false;
       status.dataset.error = '';
       status.textContent = 'Couldn’t confirm delivery. Your details are still here. Try again, or email adam@athari.dev directly.';
     } finally {

@@ -13,3 +13,5 @@
 @media(max-width:1100px){.contact-panel{padding:23px}.contact-panel::before{left:23px;right:23px}.connect{gap:5%}.connect h2{font-size:clamp(34px,4.1vw,48px)}}
 @media(max-width:760px){.connect{gap:32px}.connect-copy{padding-top:0}.connect h2{font-size:40px}.contact-panel{padding:24px}.contact-field input,.contact-field textarea{font-size:16px}.contact-direct{margin-top:14px}.contact-choices span{padding:13px 15px}.contact-submit{min-height:50px}.connect p.contact-privacy{font-size:10px}.contact-panel-heading{margin-bottom:23px}}
 @media(max-width:350px){.contact-panel{padding:18px}.contact-panel::before{left:18px;right:18px}.connect h2{font-size:34px}}
+
+.contact-standard{border:0;background:transparent;color:var(--accent);padding:14px 0 0;font-size:11px;cursor:pointer}.contact-standard:hover{text-decoration:underline;text-underline-offset:4px}.contact-standard[hidden]{display:none}
