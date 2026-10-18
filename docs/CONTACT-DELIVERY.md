@@ -29,7 +29,7 @@ GitHub Actions was not chosen as the public submission receiver: securely starti
 - Only this new DNS record was added. Existing apex/www, Sabab, Brainstorm, MX, SPF and DKIM records were preserved.
 - Vercel default deployment protection remains on for generated deployment URLs. The dedicated custom hostname is the public API; do not disable account/project protection to test previews.
 
-## Credential setup — incomplete until the owner supplies it securely
+## Credential setup and verified status
 
 The function defaults `SMTP_USER` to `adam@athari.dev`; setting that variable is optional. The preferred secret name is `SMTP_PASS`. The owner saved the production credential under `emailrecieving`; the server supports that exact legacy name as a fallback. Do not ask the owner to paste it again or print its value. `SMTP_PASS` takes precedence when both exist.
 
@@ -41,7 +41,9 @@ The function defaults `SMTP_USER` to `adam@athari.dev`; setting that variable is
 
 If Workspace policy does not allow app passwords, use Google-supported OAuth/relay authorization after the owner authorizes that setup. Do not weaken 2FA, use normal account passwords, or substitute another mail provider automatically.
 
-Implementation-time limitation: the connected Vercel API returned **403: additional permissions required to create production environment variables**. No Vercel CLI was installed/authenticated as an alternative. No credential was created, read, or stored, and no SMTP delivery was performed. The owner must configure the secret through the authorized dashboard or grant an appropriate configuration capability. This is an access limitation, not a mail-server failure.
+Initial implementation limitation: the connected Vercel API returned **403: additional permissions required to create production environment variables**. No Vercel CLI was installed/authenticated as an alternative. No credential was created, read, or stored, and no SMTP delivery was performed. The owner must configure the secret through the authorized dashboard or grant an appropriate configuration capability. This is an access limitation, not a mail-server failure.
+
+Verification on 2026-10-19: the owner configured the production mail credential in Vercel directly. Deployment `dpl_Btez47MqSA6JaJZEX9SCi43ojWSh` reached READY; the public API reported `ready:true`. A labelled SETUP TEST submitted through the live form completed successfully, confirming Google SMTP accepted the fixed recipient and the browser rendered its success panel. Inbox arrival has not been independently checked. The credential value was never read by the agent. The owner also reported adding a new variable and redeploying afterward; retain support for both documented variable names.
 
 ## Deploying changes
 

@@ -18,7 +18,7 @@ Read `docs/CONTACT-DELIVERY.md` before editing the form, backend, DNS, or mail c
 - Form: `index.html`, `contact.js`, appended contact styles in `style.css`.
 - API: `services/contact-api/`, deployed as the Vercel project recorded in the contact documentation.
 - Server tests: `npm ci --prefix services/contact-api --ignore-scripts`, then `npm test --prefix services/contact-api` and `node --test tests/contact-client.test.cjs`.
-- No SMTP credential was available during implementation. Do not claim live email delivery is verified until a real SMTP-accepted test and inbox receipt are confirmed.
+- Production mail credentials were supplied directly by the owner in Vercel. A live browser form test on 2026-10-19 succeeded with Google SMTP acceptance. Inbox receipt has not been independently checked. Preferred secret is SMTP_PASS; the owner-created legacy name emailrecieving is also supported. Never read or print either value.
 
 ## Security and honest states
 
