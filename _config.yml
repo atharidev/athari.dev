@@ -1,0 +1,7 @@
+# Keep server-only source and maintenance docs out of the GitHub Pages build.
+exclude:
+  - services
+  - docs
+  - AGENTS.md
+  - README.md
+  - tests
