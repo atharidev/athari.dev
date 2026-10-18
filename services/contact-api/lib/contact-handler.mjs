@@ -6,7 +6,7 @@ export function createHandlers({ getEnv, createTransport, now = Date.now, logErr
   // Per-instance controls, not a distributed rate limiter. No persistent visitor data.
   const attempts = new Map(), usedTokens = new Map();
   const credentials = () => {
-    const env = getEnv(), user = env.SMTP_USER || RECIPIENT, pass = (env.SMTP_PASS || '').replace(/\s/g, '');
+    const env = getEnv(), user = env.SMTP_USER || RECIPIENT, pass = (env.SMTP_PASS || env.emailrecieving || '').replace(/\s/g, '');
     return emailValid(user) && pass ? { user, pass } : null;
   };
   const key = auth => createHmac('sha256', auth.pass).update('athari-contact-token-v1').digest();

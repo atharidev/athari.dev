@@ -31,7 +31,7 @@ GitHub Actions was not chosen as the public submission receiver: securely starti
 
 ## Credential setup — incomplete until the owner supplies it securely
 
-The function defaults `SMTP_USER` to `adam@athari.dev`; setting that variable is optional. The required secret is `SMTP_PASS`.
+The function defaults `SMTP_USER` to `adam@athari.dev`; setting that variable is optional. The preferred secret name is `SMTP_PASS`. The owner saved the production credential under `emailrecieving`; the server supports that exact legacy name as a fallback. Do not ask the owner to paste it again or print its value. `SMTP_PASS` takes precedence when both exist.
 
 1. In the Google account for **adam@athari.dev**, create a dedicated Google app password for `athari.dev contact`, if Workspace policy allows app passwords. This normally requires 2-Step Verification. Use Google's secure account settings, not chat. Never use the ordinary Google sign-in password.
 2. In Vercel, open the **athari-contact-api** project, Settings -> Environment Variables.
