@@ -2,11 +2,11 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const vm = require('node:vm'), fs = require('node:fs'), path = require('node:path');
 const source = fs.readFileSync(path.join(__dirname, '../contact.js'), 'utf8');
-async function setup({ ready = true, fail = false, lang = 'en' } = {}) {
+async function setup({ ready = true, fail = false, lang = 'en', messages = null } = {}) {
   const calls = [], fields = { email: 'visitor@example.com', collaboration: 'Business', message: 'Please help with an idea.', website: '' };
   const label = {}, status = { dataset: {}, removeAttribute() {} }, heading = { focus() { this.focused = true; } }, success = { hidden: true, querySelector: () => heading };
   const button = { disabled: true, querySelector: () => label, setAttribute() {}, removeAttribute() {} };
-  const form = { dataset: { endpoint: 'https://contact.athari.dev/api/contact' }, hidden: false, elements: { website: { value: '' } },
+  const form = { dataset: { endpoint: 'https://contact.athari.dev/api/contact', messages: JSON.stringify(messages) }, hidden: false, elements: { website: { value: '' } },
     querySelector: () => button, reportValidity: () => true, addEventListener(_, callback) { this.submit = callback; } };
   const fetch = async (url, options) => {
     calls.push({ url, options });
@@ -51,4 +51,18 @@ test('Arabic unavailable service disables sending with direct email in Arabic', 
   const s = await setup({ lang: 'ar', ready: false });
   assert.equal(s.button.disabled, true); assert.match(s.status.textContent, /خدمة الإرسال غير متاحة/);
   assert.match(s.status.textContent, /adam@athari.dev/);
+});
+
+
+test('QR locale forms use localized recovery copy and preserve API category values',async()=>{
+ const locales=JSON.parse(fs.readFileSync(path.join(__dirname,'../scripts/extra-locales.json'),'utf8'));
+ for(const [lang,copy] of Object.entries(locales)){
+  const unavailable=await setup({lang,ready:false,messages:copy.messages});
+  assert.equal(unavailable.status.textContent,copy.messages.unavailable);
+  const failed=await setup({lang,fail:true,messages:copy.messages});await failed.submit();
+  assert.equal(failed.status.textContent,copy.messages.unconfirmed);assert.equal(failed.form.hidden,false);
+  const ready=await setup({lang,messages:copy.messages});await ready.submit();
+  assert.equal(ready.success.hidden,false);
+  assert.equal(JSON.parse(ready.calls.find(x=>x.options.method==='POST').options.body).collaboration,'Business');
+ }
 });

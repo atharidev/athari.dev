@@ -4,7 +4,8 @@ from PIL import Image,ImageDraw
 import xml.etree.ElementTree as ET
 root=Path(__file__).resolve().parents[1]/'qr'
 paper='#edf1df';ink='#172014'
-for language,destination,mask in [('en','en',1),('ar','ar',3)]:
+LANGUAGES = [('en','en',1),('ar','ar',3),('he','he',2),('ru','ru',4),('es','es',5),('zh','zh',6),('fr','fr',7),('tr','tr',0)]
+for language,destination,mask in LANGUAGES:
  url=f'https://athari.dev/{destination}/'
  qr=qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_H,box_size=20,border=4,mask_pattern=mask)
  qr.add_data(url);qr.make(fit=True)
@@ -37,7 +38,8 @@ import re
 page=root/'index.html'
 if page.exists():
  html=page.read_text()
- bank='\n'.join(f'<div class="qr-code" data-code="{lang}"'+(' hidden' if lang!='en' else '')+'>'+(root/f'code-{lang}.svg').read_text()+'</div>' for lang in ['en','ar'])
+ bank='\n'.join(f'<div class="qr-code" data-code="{lang}"'+(' hidden' if lang!='en' else '')+'>'+(root/f'code-{lang}.svg').read_text()+'</div>' for lang,_,_ in LANGUAGES)
  assert html.count('<!-- QR BANK START -->')==1 and html.count('<!-- QR BANK END -->')==1
  html=re.sub(r'(?s)(<!-- QR BANK START -->).*?(<!-- QR BANK END -->)',lambda m:m.group(1)+bank+'\n'+m.group(2),html)
  page.write_text(html)
+

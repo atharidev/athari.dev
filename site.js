@@ -13,9 +13,9 @@
     artwork.toggleAttribute('data-paused', paused || document.hidden);
     document.documentElement.toggleAttribute('data-motion-paused', paused || document.hidden);
     toggle.setAttribute('aria-pressed', String(paused));
-    toggle.setAttribute('aria-label', document.documentElement.lang === 'ar'
+    toggle.setAttribute('aria-label', (paused ? toggle.dataset?.playLabel : toggle.dataset?.pauseLabel) || (document.documentElement.lang === 'ar'
       ? (paused ? 'تشغيل حركة العمل الفني' : 'إيقاف حركة العمل الفني')
-      : (paused ? 'Play artwork motion' : 'Pause artwork motion'));
+      : (paused ? 'Play artwork motion' : 'Pause artwork motion')));
   };
   renderState();
   toggle.addEventListener('click', () => { paused = !paused; renderState(); });
@@ -44,3 +44,4 @@
     }).observe(artwork);
   }
 })();
+

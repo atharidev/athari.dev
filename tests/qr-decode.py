@@ -25,7 +25,7 @@ def raster(svg,time):
  render(tree);return im
 count=0
 html=(ROOT/'qr/index.html').read_text()
-for language,destination in [('en','en'),('ar','ar')]:
+for language,destination in [(x,x) for x in ['en','ar','he','ru','es','zh','fr','tr']]:
  expected=f'https://athari.dev/{destination}/';svg=(ROOT/f'qr/code-{language}.svg').read_text()
  assert svg in html,'Inline code differs from its verified asset'
  download=Image.open(ROOT/f'qr/athari-qr-{language}.png')
@@ -47,3 +47,4 @@ def luminance(rgb):
 contrast=(luminance((237,241,223))+.05)/(luminance(LIGHT)+.05)
 assert contrast>=7
 print(f'{count} decoding checks passed. Minimum ink contrast: {contrast:.2f}:1. Quiet zones intact.')
+

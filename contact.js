@@ -10,7 +10,9 @@
   const success = document.querySelector('#contact-success');
   let pending = false, ready = false, token = '', issued = 0, initialized = false;
   const arabic = document.documentElement?.lang === 'ar';
-  const copy = arabic ? {
+  let localizedCopy;
+  try { localizedCopy = JSON.parse(form.dataset.messages || 'null'); } catch {}
+  const copy = localizedCopy || (arabic ? {
     unavailable: 'خدمة الإرسال غير متاحة حاليًا. يُرجى التواصل مباشرة عبر adam@athari.dev.',
     connecting: 'جارٍ تهيئة الإرسال الآمن…', sending: 'جارٍ الإرسال…',
     sendingStatus: 'جارٍ إرسال طلبك بأمان…', submit: 'لنبدأ الحديث',
@@ -22,7 +24,7 @@
     sendingStatus: 'Sending your enquiry securely…', submit: 'Start a conversation',
     rateLimited: 'Please wait a few minutes before trying again, or email adam@athari.dev directly.',
     unconfirmed: 'Couldn’t confirm delivery. Your details are still here. Try again, or email adam@athari.dev directly.'
-  };
+  });
   const unavailable = copy.unavailable;
   async function request(options) {
     const controller = new AbortController();
@@ -78,3 +80,4 @@
     }
   });
 })();
+

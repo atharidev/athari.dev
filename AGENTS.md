@@ -47,12 +47,21 @@ Until SMTP is configured, the endpoint returns `ready:false` and POST 503. The p
 ## QR business card — 2026-10-19
 
 - `/qr/` extends the existing GitHub Pages site. The intended domain is `athari.dev`, consistent with this project. Do not redirect the QR page through the homepage's language entrance.
-- Recipient buttons change the actual QR, destination link, share payload and PNG download together. Arabic goes directly to `/ar/`. English goes directly to `/en/`. The owner subsequently removed the Hebrew option. Keep only Arabic and English buttons and code assets. Legacy Hebrew parameters normalize to English.
-- Two fixed, standards-based QR codes use high error correction and a four-module quiet zone. Motion changes only dark ink tone and artwork outside the paper. Never deform, move, obscure or fade code modules, finder patterns or quiet zones. No central logo masks are needed.
+- Recipient buttons change the actual QR, destination link, share payload and PNG download together. Arabic goes directly to `/ar/`. English goes directly to `/en/`. The owner later restored Hebrew and requested a compact Other languages dropdown in QR only. Keep Arabic and English as the two primary buttons; extra choices are Hebrew, Russian, Spanish, Simplified Chinese, French and Turkish. The main bilingual entrance remains Arabic/English only.
+- Eight fixed, standards-based QR codes use high error correction and a four-module quiet zone. Motion changes only dark ink tone and artwork outside the paper. Never deform, move, obscure or fade code modules, finder patterns or quiet zones. No central logo masks are needed.
 - `scripts/generate-qr.py` regenerates SVGs, PNGs and the inline HTML code bank together. QR targets are permanent owned URLs, with no tracking, external QR API or expiration.
-- `qr.js` remembers recipient selection only in sessionStorage. Reading the main site language as an initial hint must not overwrite the owner's preference when choosing someone else's language. `?for=en` and `?for=ar` are supported. Legacy `?for=he` and old stored Hebrew selections normalize to English.
+- `qr.js` remembers recipient selection only in sessionStorage. Reading the main site language as an initial hint must not overwrite the owner's preference when choosing someone else's language. `?for=en`, `ar`, `he`, `ru`, `es`, `zh`, `fr`, `tr` are supported, with a strict whitelist. Every supported choice updates the QR, direct URL, PNG, accessible label and share payload together. Invalid values fall back to ar/en.
 - Presentation, sharing and keeping the screen awake are progressive enhancements. Keep the QR, destination link and PNG download usable if these browser capabilities are unavailable. Do not claim control of screen brightness. Respect reduced motion.
 - Check decoding using `python tests/qr-decode.py` and behavior with `node --test tests/qr-client.test.cjs`. Real-camera and mobile Safari verification remain separate from synthetic decoder tests.
 
 - QR touch correction: decorative stage, pseudo-elements, paper and SVGs must have `pointer-events:none`. Keep the recipient picker above the scene, with explicit width, two fixed columns, at least 56px button height and `touch-action:manipulation`.
 - Recipient choice must **not** flip the whole interface language/direction. UI locale follows the owner’s existing site preference at page load. Keep button positions, headings and geometry stable while changing the destination.
+
+
+## Explicit extra QR locales — 2026-10-19
+
+- `/he/`, `/ru/`, `/es/`, `/zh/`, `/fr/`, `/tr/` are static translated introductions, with the original artwork, three concise service descriptions, localized contact form and recovery messages. Generate them with `python scripts/build-extra-locales.py` from `scripts/extra-locales.json`. They intentionally do not duplicate the interactive ar/en showcase.
+- Do not expose these languages on the root entrance or add automatic redirects to them. Only explicit QR selection or their direct URLs discovers them. Extra locale pages never overwrite `athari-language`; gateway and main language preference stay ar/en.
+- Hebrew uses RTL. Chinese uses platform CJK fonts. Artwork control labels and contact messages use authored locale text. Contact category values remain Creator/Business.
+- Say «الحوسبة السحابية» in Arabic, including the short hero eyebrow.
+- Regenerate all SVG, PNG and inline QR variants together with `python scripts/generate-qr.py`. Verify all eight with `python tests/qr-decode.py` and run `node --test tests/*.test.cjs`. Keep the picker touch targets and quiet zones intact.
