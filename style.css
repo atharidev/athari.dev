@@ -62,3 +62,15 @@ html[lang=ar] footer{font-size:11px;line-height:1.8}
 @media(max-width:1000px){.gateway-stage{gap:3%;grid-template-columns:.8fr 1.2fr}.language-card{padding:20px 18px}.gateway-eyebrow{letter-spacing:1px;font-size:8px}.gateway-prompt{gap:9px}}
 @media(max-width:760px){.gateway-header{height:86px}.gateway-header-note{font-size:9px;gap:8px}.gateway-stage{display:flex;align-items:center;justify-content:center;min-height:0;padding:64px 0 58px;isolation:isolate;overflow:clip}.gateway-copy{width:min(100%,500px)}.gateway-art{position:absolute;width:420px;inset-inline-start:-170px;top:-130px;opacity:.16;z-index:-1;pointer-events:none}.gateway-art .gateway-index,.gateway-art .gateway-art-caption{display:none}.gateway h1.gateway-title{font-size:clamp(46px,11.5vw,64px);line-height:1.65}.gateway-subtitle{font-size:27px;margin:5px 0 34px}.gateway-eyebrow{font-size:8px;margin-bottom:20px}.language-options{gap:12px}.language-card{min-height:177px;padding:20px 18px}.language-card-top{margin-bottom:21px}.language-card-action{font-size:9px}.language-card[lang=ar] .language-card-action{font-size:10px}.language-card-name{font-size:22px}.language-card[lang=ar] .language-card-name{font-size:33px}.gateway-footer{justify-content:center;flex-wrap:wrap;text-align:center;gap:12px;font-size:9px}.gateway-footer p{width:100%;order:initial}.gateway-footer>span{margin:2px 0 0}.gateway-remember{margin-top:24px}}
 @media(max-width:350px){.gateway-header-note{font-size:8px}.gateway h1.gateway-title{font-size:43px}.gateway-subtitle{font-size:23px}.language-card{padding:18px 14px}.language-card-action{font-size:9px}.language-card[lang=ar] .language-card-action{font-size:9px}.gateway-prompt{font-size:10px;gap:8px}.gateway-prompt [lang=ar]{font-size:11px}}
+
+/* Decorative art must not widen the document in either text direction. */
+body{overflow-x:hidden}
+@supports(overflow-x:clip){html,body{overflow-x:clip}}
+.art-stage{overflow:hidden;overflow:clip}
+.sculpture{position:absolute;left:50%;margin-left:-57.5%;margin-right:0}
+.hero-copy,.section-intro,.principles,.principle>div,.connect-copy{min-inline-size:0}
+.tags span{max-inline-size:100%;overflow-wrap:anywhere}
+.art-point{max-inline-size:40%;white-space:normal;line-height:1.7}
+.art-point i{flex-shrink:0}
+@media(max-width:1100px){.art-point{max-inline-size:46%}}
+@media(max-width:760px){.sculpture{left:50%;margin-left:-54%}}
