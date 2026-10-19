@@ -34,3 +34,12 @@ Until SMTP is configured, the endpoint returns `ready:false` and POST 503. The p
 - Keep content parity between `ar/index.html` and `en/index.html`. Keep the Latin brand and email direction LTR. Contact category **values** stay `Creator` and `Business` for API compatibility, regardless of translated labels.
 - Dynamic form notices and artwork control labels follow the document language. Backend source and mail configuration are unchanged by this localization.
 - Checks: `node --check gateway.js`, `node --check language.js`, `node --check site.js`, `node --check contact.js`, `node --test tests/*.test.cjs`.
+
+## Business showcase — 2026-10-19
+
+- The owner explicitly requested a business demo section, superseding the earlier preference for no project gallery. Keep this section in both languages, matching the established art style.
+- `#showcase` offers three local interactive concepts: a fictional consulting website, booking flow, and request-management desk. Content and records are illustrative, not client work, customer statistics, or real appointments.
+- `showcase.js` manages accessible keyboard-operated tabs, local demo state, and enquiry prefill. No demo data is saved or sent. Website details remain usable without JavaScript, and all three panels remain visible without enhancement.
+- Enquiry links select the existing Business category and populate an empty message only. Never overwrite a visitor draft or submit the contact form automatically.
+- Keep mobile overflow containment and min-width constraints when changing previews. Use Arabic commas in Arabic prose and the full term «الذكاء الاصطناعي والحوسبة السحابية».
+- Validate interactions with `node --test tests/showcase.test.cjs`, plus existing client and language tests. Frontend-only changes require GitHub Pages publication.

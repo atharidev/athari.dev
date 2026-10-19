@@ -14,6 +14,7 @@ The collaboration form uses an owned Vercel function and the existing Google Wor
 - `ar/index.html`, `en/index.html`: complete Arabic/English editions, with reciprocal language links and preserved contact delivery.
 - `language.js`, `style.css`, `site.js`: language preferences, responsive RTL/LTR design and animated artwork.
 - `sitemap.xml`: entrance and localized canonical pages.
+- `showcase.js`: local website, booking and business-tool demos with keyboard navigation and enquiry prefill.
 - `contact.js`: isolated collaboration form enhancement.
 - `services/contact-api/`: Vercel Node function, SMTP delivery and tests.
 - `assets/`: original wire sculpture and self-hosted Manrope font.
