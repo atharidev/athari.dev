@@ -5,3 +5,4 @@ exclude:
   - AGENTS.md
   - README.md
   - tests
+  - scripts

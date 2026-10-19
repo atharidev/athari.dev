@@ -23,3 +23,11 @@ The collaboration form uses an owned Vercel function and the existing Google Wor
 Push frontend edits to `main` to publish GitHub Pages. Backend edits require a separate Vercel deployment. Production SMTP acceptance was verified on 2026-10-19; see the runbook for the exact scope and remaining inbox verification. The page keeps direct email available and shows success only after API acceptance.
 
 First-time visitors choose Arabic or English; returning visitors go directly to their choice. Use `/?choose=1` to reopen the entrance, or the header language switch on either edition. The choice is stored only in the browser. Both localized pages work without JavaScript.
+
+## In-person QR card
+
+`https://athari.dev/qr/` is a permanent, animated business card using the existing art direction. Pick English, Arabic or Hebrew. Arabic encodes `https://athari.dev/ar/`; English and Hebrew encode `https://athari.dev/en/`. Hebrew intentionally opens the English edition. A different QR mask gives each choice its own visible pattern.
+
+The four-module quiet zone, fixed code geometry and high contrast are retained during animation. Present mode, optional native sharing/clipboard, motion pause, and matching PNG downloads work without a third-party QR or tracking service. Fullscreen and screen wake lock are progressive enhancements.
+
+To regenerate: install Python `qrcode` and `Pillow`, then run `python scripts/generate-qr.py`. This synchronizes all SVG/PNG variants and the inline code bank. Install `zxing-cpp` to run `python tests/qr-decode.py`. Client behavior is checked with `node --test tests/qr-client.test.cjs`.
