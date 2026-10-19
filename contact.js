@@ -9,7 +9,21 @@
   const status = document.querySelector('#contact-status');
   const success = document.querySelector('#contact-success');
   let pending = false, ready = false, token = '', issued = 0, initialized = false;
-  const unavailable = 'The form is being connected. Please email adam@athari.dev directly for now.';
+  const arabic = document.documentElement?.lang === 'ar';
+  const copy = arabic ? {
+    unavailable: 'خدمة الإرسال غير متاحة حاليًا. يُرجى التواصل مباشرة عبر adam@athari.dev.',
+    connecting: 'جارٍ تهيئة الإرسال الآمن…', sending: 'جارٍ الإرسال…',
+    sendingStatus: 'جارٍ إرسال طلبك بأمان…', submit: 'لنبدأ الحديث',
+    rateLimited: 'يُرجى الانتظار بضع دقائق قبل المحاولة مجدّدًا، أو التواصل مباشرة عبر adam@athari.dev.',
+    unconfirmed: 'لم نتمكّن من تأكيد الإرسال. بياناتك ما زالت محفوظة في النموذج. حاول مجدّدًا، أو راسل adam@athari.dev مباشرة.'
+  } : {
+    unavailable: 'The form is being connected. Please email adam@athari.dev directly for now.',
+    connecting: 'Connecting secure email delivery…', sending: 'Sending…',
+    sendingStatus: 'Sending your enquiry securely…', submit: 'Start a conversation',
+    rateLimited: 'Please wait a few minutes before trying again, or email adam@athari.dev directly.',
+    unconfirmed: 'Couldn’t confirm delivery. Your details are still here. Try again, or email adam@athari.dev directly.'
+  };
+  const unavailable = copy.unavailable;
   async function request(options) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 22000);
@@ -27,7 +41,7 @@
   }
   async function initialize() {
     if (initialized) return; initialized = true;
-    status.textContent = 'Connecting secure email delivery…';
+    status.textContent = copy.connecting;
     try { await challenge(); ready = true; button.disabled = false; status.textContent = ''; }
     catch { status.textContent = unavailable; button.disabled = true; }
   }
@@ -40,7 +54,7 @@
     event.preventDefault();
     if (pending || !ready || !form.reportValidity() || form.elements.website.value) return;
     pending = true; button.disabled = true; button.setAttribute('aria-busy', 'true');
-    label.textContent = 'Sending…'; status.removeAttribute('data-error'); status.textContent = 'Sending your enquiry securely…';
+    label.textContent = copy.sending; status.removeAttribute('data-error'); status.textContent = copy.sendingStatus;
     try {
       if (!token || Date.now() - issued > 14 * 60 * 1000) await challenge();
       const fields = new FormData(form);
@@ -57,10 +71,10 @@
     } catch (error) {
       token = ''; status.dataset.error = '';
       status.textContent = error.message === 'unavailable' ? unavailable : error.message === 'rate_limited'
-        ? 'Please wait a few minutes before trying again, or email adam@athari.dev directly.'
-        : 'Couldn’t confirm delivery. Your details are still here. Try again, or email adam@athari.dev directly.';
+        ? copy.rateLimited
+        : copy.unconfirmed;
     } finally {
-      pending = false; button.disabled = !ready; button.removeAttribute('aria-busy'); label.textContent = 'Start a conversation';
+      pending = false; button.disabled = !ready; button.removeAttribute('aria-busy'); label.textContent = copy.submit;
     }
   });
 })();

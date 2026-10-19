@@ -10,10 +10,15 @@ The collaboration form uses an owned Vercel function and the existing Google Wor
 
 ## Source
 
-- `index.html`, `style.css`, `site.js`: homepage and animated artwork.
+- `index.html`, `gateway.js`: bilingual language entrance and remembered-language redirect.
+- `ar/index.html`, `en/index.html`: complete Arabic/English editions, with reciprocal language links and preserved contact delivery.
+- `language.js`, `style.css`, `site.js`: language preferences, responsive RTL/LTR design and animated artwork.
+- `sitemap.xml`: entrance and localized canonical pages.
 - `contact.js`: isolated collaboration form enhancement.
 - `services/contact-api/`: Vercel Node function, SMTP delivery and tests.
 - `assets/`: original wire sculpture and self-hosted Manrope font.
 - `CNAME`, `_config.yml`: GitHub Pages domain and backend-source exclusions.
 
-Push frontend edits to `main` to publish GitHub Pages. Backend edits require a separate Vercel deployment. SMTP delivery remains **unconfigured and unverified until SMTP_PASS is added securely to the Vercel API project and a real inbox test passes**. The page keeps direct email available and does not pretend a disabled form has sent anything.
+Push frontend edits to `main` to publish GitHub Pages. Backend edits require a separate Vercel deployment. Production SMTP acceptance was verified on 2026-10-19; see the runbook for the exact scope and remaining inbox verification. The page keeps direct email available and shows success only after API acceptance.
+
+First-time visitors choose Arabic or English; returning visitors go directly to their choice. Use `/?choose=1` to reopen the entrance, or the header language switch on either edition. The choice is stored only in the browser. Both localized pages work without JavaScript.

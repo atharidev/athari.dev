@@ -15,7 +15,7 @@
 Read `docs/CONTACT-DELIVERY.md` before editing the form, backend, DNS, or mail configuration. The frontend and API have separate deployment steps. A GitHub Pages success does NOT mean the Vercel API was deployed.
 
 - Frontend: repository root, `main`, GitHub Pages, https://athari.dev/.
-- Form: `index.html`, `contact.js`, appended contact styles in `style.css`.
+- Form: `ar/index.html` and `en/index.html`, `contact.js`, appended contact styles in `style.css`. Root `index.html` is the bilingual entrance.
 - API: `services/contact-api/`, deployed as the Vercel project recorded in the contact documentation.
 - Server tests: `npm ci --prefix services/contact-api --ignore-scripts`, then `npm test --prefix services/contact-api` and `node --test tests/contact-client.test.cjs`.
 - Production mail credentials were supplied directly by the owner in Vercel. A live browser form test on 2026-10-19 succeeded with Google SMTP acceptance. Inbox receipt has not been independently checked. Preferred secret is SMTP_PASS; the owner-created legacy name emailrecieving is also supported. Never read or print either value.
@@ -25,3 +25,12 @@ Read `docs/CONTACT-DELIVERY.md` before editing the form, backend, DNS, or mail c
 Keep server-side fixed recipient, authenticated sender, visitor Reply-To, input limits, TLS certificate verification, allowed-origin checks, signed expiring form token, honeypot, and safe errors. In-memory throttling is best-effort per instance, not a distributed/global limit. Do not represent it as such. Stronger abuse control must remain within the approved stack and budget.
 
 Until SMTP is configured, the endpoint returns `ready:false` and POST 503. The page keeps the direct email link and disables sending with an honest setup message. Never show a success message for a queued placeholder, a missing credential, or an SMTP failure.
+
+## Arabic and language selection — 2026-10-19
+
+- `/` is a bilingual language entrance. `/ar/` and `/en/` are complete static pages, usable without JavaScript, with reciprocal hreflang and their own canonical URLs.
+- Arabic uses RTL layout, authored Arabic copy, and self-hosted Noto Sans Arabic / Noto Naskh Arabic fonts with bundled OFL licenses. Preserve Arabic shaping: never use negative letter spacing or artificial italic on Arabic.
+- `gateway.js` redirects only a valid previously selected `ar`/`en` locale. `/?choose=1` explicitly reopens the entrance. `language.js` remembers the choice in localStorage and preserves section hashes in links. Storage failure must not block entry. No language guessing, flags, analytics, or cookies are needed.
+- Keep content parity between `ar/index.html` and `en/index.html`. Keep the Latin brand and email direction LTR. Contact category **values** stay `Creator` and `Business` for API compatibility, regardless of translated labels.
+- Dynamic form notices and artwork control labels follow the document language. Backend source and mail configuration are unchanged by this localization.
+- Checks: `node --check gateway.js`, `node --check language.js`, `node --check site.js`, `node --check contact.js`, `node --test tests/*.test.cjs`.
