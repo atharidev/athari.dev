@@ -12,16 +12,18 @@
   const present = document.querySelector('#qr-present');
   const motion = document.querySelector('#qr-motion');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const valid = value => ['en', 'ar', 'he'].includes(value);
-  const urls = { en: 'https://athari.dev/en/', ar: 'https://athari.dev/ar/', he: 'https://athari.dev/en/' };
+  const valid = value => ['en', 'ar'].includes(value);
+  const urls = { en: 'https://athari.dev/en/', ar: 'https://athari.dev/ar/' };
+  const normalize = value => value === 'he' ? 'en' : value;
   const words = {
     en: {
       edition: 'A LIVING BUSINESS CARD', eyebrow: 'AN IDEA. A CONVERSATION. A BEGINNING.',
       title: 'Let’s', titleArt: 'connect.', subtitle: 'Scan. Connect. Build something useful.',
       choose: 'Choose their language', present: 'Present', exit: 'Exit view', share: 'Share', save: 'Save QR',
-      footer: 'Small beginnings. Lasting impact.', destination: 'Opens the English website',
-      hebrew: 'For Hebrew speakers · opens the English website', open: 'Open the English website',
-      code: 'Scan this QR code to open the English website at athari.dev',
+      footer: 'Small beginnings. Lasting impact.',
+      destination: { en: 'Opens the English website', ar: 'Opens the Arabic website' },
+      open: { en: 'Open the English website', ar: 'Open the Arabic website' },
+      code: { en: 'Scan this QR code to open the English website at athari.dev', ar: 'Scan this QR code to open the Arabic website at athari.dev' },
       pause: 'Pause artwork motion', play: 'Resume artwork motion',
       copied: 'Website link copied.', manual: 'Press and hold athari.dev above to copy the website link.',
       shareText: 'Let’s build something useful together.', presenting: 'Hold steady. Let them scan.'
@@ -30,17 +32,18 @@
       edition: 'بطاقة تواصل حيّة', eyebrow: 'فكرة. حديث. بداية.',
       title: 'تواصلٌ', titleArt: 'يترك أثرًا.', subtitle: 'امسح الرمز، ولنبنِ شيئًا نافعًا.',
       choose: 'اختر لغة من تقابله', present: 'عرض أكبر', exit: 'رجوع', share: 'مشاركة', save: 'حفظ الرمز',
-      footer: 'بدايات صغيرة. أثر يدوم.', destination: 'يفتح الموقع بالعربية',
-      hebrew: 'للمتحدّثين بالعبرية، يفتح الموقع بالإنجليزية', open: 'افتح الموقع بالعربية',
-      code: 'امسح الرمز لفتح موقع athari.dev بالعربية',
+      footer: 'بدايات صغيرة. أثر يدوم.',
+      destination: { en: 'يفتح الموقع بالإنجليزية', ar: 'يفتح الموقع بالعربية' },
+      open: { en: 'افتح الموقع بالإنجليزية', ar: 'افتح الموقع بالعربية' },
+      code: { en: 'امسح الرمز لفتح موقع athari.dev بالإنجليزية', ar: 'امسح الرمز لفتح موقع athari.dev بالعربية' },
       pause: 'إيقاف حركة العمل الفني', play: 'تشغيل حركة العمل الفني',
       copied: 'نُسخ رابط الموقع.', manual: 'اضغط مطوّلًا على athari.dev أعلاه لنسخ رابط الموقع.',
       shareText: 'لنبنِ شيئًا نافعًا معًا.', presenting: 'ثبّت الهاتف ليتمكّن الآخر من مسح الرمز.'
     }
   };
-  let selected = 'en', presenting = false, paused = reduced.matches, fullscreenOwned = false;
+  let uiLocale = 'en', selected = 'en', presenting = false, paused = reduced.matches, fullscreenOwned = false;
   let wake = null, wakePending = false;
-  const copy = () => words[selected === 'ar' ? 'ar' : 'en'];
+  const copy = () => words[uiLocale];
   const renderMotion = () => {
     body.toggleAttribute('data-motion-paused', paused || reduced.matches || document.hidden);
     motion.hidden = reduced.matches;
@@ -48,8 +51,7 @@
     motion.setAttribute('aria-label', paused ? copy().play : copy().pause);
   };
   const render = () => {
-    const locale = selected === 'ar' ? 'ar' : 'en';
-    document.documentElement.lang = locale; document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = uiLocale; document.documentElement.dir = uiLocale === 'ar' ? 'rtl' : 'ltr';
     document.querySelectorAll('[data-i18n]').forEach(node => {
       const key = node.dataset.i18n;
       node.textContent = key === 'present' && presenting ? copy().exit : copy()[key];
@@ -57,26 +59,28 @@
     choices.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.recipient === selected)));
     codes.forEach(node => {
       node.hidden = node.dataset.code !== selected;
-      node.querySelector('title').textContent = copy().code;
+      node.querySelector('title').textContent = copy().code[selected];
     });
-    destination.href = urls[selected]; destination.setAttribute('aria-label', copy().open);
-    destinationNote.textContent = selected === 'he' ? copy().hebrew : copy().destination;
+    destination.href = urls[selected]; destination.setAttribute('aria-label', copy().open[selected]);
+    destinationNote.textContent = copy().destination[selected];
     save.href = '/qr/athari-qr-' + selected + '.png'; save.download = 'athari-qr-' + selected + '.png';
     present.setAttribute('aria-pressed', String(presenting));
     renderMotion();
   };
   try {
-    const requested = new URLSearchParams(location.search).get('for');
-    const remembered = sessionStorage.getItem('athari-qr-recipient');
+    const requested = normalize(new URLSearchParams(location.search).get('for'));
+    const remembered = normalize(sessionStorage.getItem('athari-qr-recipient'));
     const siteLocale = localStorage.getItem('athari-language');
+    uiLocale = siteLocale === 'ar' ? 'ar' : 'en';
     selected = valid(requested) ? requested : valid(remembered) ? remembered : siteLocale === 'ar' ? 'ar' : 'en';
   } catch {
-    const requested = new URLSearchParams(location.search).get('for');
+    const requested = normalize(new URLSearchParams(location.search).get('for'));
     if (valid(requested)) selected = requested;
   }
   choices.forEach(button => {
     button.disabled = false;
     button.addEventListener('click', () => {
+      if (selected === button.dataset.recipient) return;
       selected = button.dataset.recipient;
       try { sessionStorage.setItem('athari-qr-recipient', selected); } catch {}
       status.textContent = ''; render();

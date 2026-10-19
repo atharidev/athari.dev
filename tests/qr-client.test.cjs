@@ -9,8 +9,8 @@ function element(values={}) {
 }
 function setup({search='',language='en',remembered=null,blocked=false,reducedMotion=false,shareNative,clipboard}={}) {
   const storage={'athari-language':language},session={'athari-qr-recipient':remembered};
-  const choices=['en','ar','he'].map(value=>element({dataset:{recipient:value}}));
-  const codes=['en','ar','he'].map(value=>element({dataset:{code:value},title:element()}));
+  const choices=['en','ar'].map(value=>element({dataset:{recipient:value}}));
+  const codes=['en','ar'].map(value=>element({dataset:{code:value},title:element()}));
   const labels=['edition','eyebrow','title','titleArt','subtitle','choose','present','share','save','footer'].map(key=>element({dataset:{i18n:key}}));
   const ids=Object.fromEntries(['qr-destination','qr-destination-note','qr-save','qr-status','qr-share','qr-present','qr-motion'].map(id=>['#'+id,element()]));
   const body=element(),events={},media=element({matches:reducedMotion});
@@ -26,12 +26,12 @@ const select=(s,value)=>s.choices.find(el=>el.dataset.recipient===value).events.
 test('recipient selection changes QR, target and download together without changing owner language',()=>{
  const s=setup();assert.equal(s.ids['#qr-destination'].href,'https://athari.dev/en/');
  select(s,'ar');assert.equal(s.ids['#qr-destination'].href,'https://athari.dev/ar/');
- assert.deepEqual(s.codes.map(el=>el.hidden),[true,false,true]);assert.equal(s.document.documentElement.dir,'rtl');
+ assert.deepEqual(s.codes.map(el=>el.hidden),[true,false]);assert.equal(s.document.documentElement.dir,'ltr');
  assert.equal(s.ids['#qr-save'].href,'/qr/athari-qr-ar.png');
- select(s,'he');assert.deepEqual(s.codes.map(el=>el.hidden),[true,true,false]);
- assert.equal(s.ids['#qr-destination'].href,'https://athari.dev/en/');assert.equal(s.ids['#qr-save'].download,'athari-qr-he.png');
- assert.match(s.ids['#qr-destination-note'].textContent,/Hebrew speakers/);
- assert.equal(s.storage['athari-language'],'en');assert.equal(s.session['athari-qr-recipient'],'he');
+ select(s,'en');assert.deepEqual(s.codes.map(el=>el.hidden),[false,true]);
+ assert.equal(s.ids['#qr-destination'].href,'https://athari.dev/en/');assert.equal(s.ids['#qr-save'].download,'athari-qr-en.png');
+ assert.match(s.ids['#qr-destination-note'].textContent,/English website/);
+ assert.equal(s.storage['athari-language'],'en');assert.equal(s.session['athari-qr-recipient'],'en');
 });
 test('valid URL selection wins over stored hints and blocked storage does not prevent entry',()=>{
  assert.equal(setup({search:'?for=he',language:'ar'}).ids['#qr-destination'].href,'https://athari.dev/en/');
@@ -42,8 +42,8 @@ test('valid URL selection wins over stored hints and blocked storage does not pr
 test('native share and clipboard fallback use the selected destination',async()=>{
  const shares=[],copies=[];const s=setup({shareNative:async value=>shares.push(value)});
  select(s,'ar');await s.ids['#qr-share'].events.click();assert.equal(shares[0].url,'https://athari.dev/ar/');
- select(s,'he');await s.ids['#qr-share'].events.click();assert.equal(shares[1].url,'https://athari.dev/en/');
- const fallback=setup({clipboard:async value=>copies.push(value)});select(fallback,'ar');await fallback.ids['#qr-share'].events.click();
+ select(s,'en');await s.ids['#qr-share'].events.click();assert.equal(shares[1].url,'https://athari.dev/en/');
+ const fallback=setup({language:'ar',clipboard:async value=>copies.push(value)});select(fallback,'ar');await fallback.ids['#qr-share'].events.click();
  assert.deepEqual(copies,['https://athari.dev/ar/']);assert.match(fallback.ids['#qr-status'].textContent,/نُسخ/);
 });
 test('cancelled native sharing is silent and clipboard refusal offers a manual fallback',async()=>{
@@ -65,4 +65,16 @@ test('motion respects system preference, user pause and page visibility',()=>{
  s.ids['#qr-motion'].events.click();assert.equal(s.body.attrs['data-motion-paused'],undefined);
  s.document.hidden=true;s.events.visibilitychange();assert.equal(s.body.attrs['data-motion-paused'],'');
  s.document.hidden=false;s.events.visibilitychange();assert.equal(s.body.attrs['data-motion-paused'],undefined);
+});
+
+test('rapid repeated language taps stay in sync and do not flip the interface direction',()=>{
+ const s=setup({language:'ar'});
+ for(let index=0;index<40;index++){
+  const target=index%2===0?'en':'ar';select(s,target);
+  assert.equal(s.document.documentElement.lang,'ar');assert.equal(s.document.documentElement.dir,'rtl');
+  assert.equal(s.ids['#qr-destination'].href,`https://athari.dev/${target}/`);
+  assert.equal(s.ids['#qr-save'].href,`/qr/athari-qr-${target}.png`);
+  assert.deepEqual(s.codes.filter(node=>!node.hidden).map(node=>node.dataset.code),[target]);
+  assert.deepEqual(s.choices.filter(node=>node.attrs['aria-pressed']==='true').map(node=>node.dataset.recipient),[target]);
+ }
 });

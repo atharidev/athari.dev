@@ -25,7 +25,7 @@ def raster(svg,time):
  render(tree);return im
 count=0
 html=(ROOT/'qr/index.html').read_text()
-for language,destination in [('en','en'),('ar','ar'),('he','en')]:
+for language,destination in [('en','en'),('ar','ar')]:
  expected=f'https://athari.dev/{destination}/';svg=(ROOT/f'qr/code-{language}.svg').read_text()
  assert svg in html,'Inline code differs from its verified asset'
  download=Image.open(ROOT/f'qr/athari-qr-{language}.png')

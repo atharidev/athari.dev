@@ -26,7 +26,7 @@ First-time visitors choose Arabic or English; returning visitors go directly to 
 
 ## In-person QR card
 
-`https://athari.dev/qr/` is a permanent, animated business card using the existing art direction. Pick English, Arabic or Hebrew. Arabic encodes `https://athari.dev/ar/`; English and Hebrew encode `https://athari.dev/en/`. Hebrew intentionally opens the English edition. A different QR mask gives each choice its own visible pattern.
+`https://athari.dev/qr/` is a permanent, animated business card using the existing art direction. Pick English or Arabic using the large touch buttons. Arabic encodes `https://athari.dev/ar/`; English encodes `https://athari.dev/en/`. Recipient selection changes the QR and destination while keeping the interface language and layout stable. Decorative QR layers ignore pointer events so they cannot intercept touches.
 
 The four-module quiet zone, fixed code geometry and high contrast are retained during animation. Present mode, optional native sharing/clipboard, motion pause, and matching PNG downloads work without a third-party QR or tracking service. Fullscreen and screen wake lock are progressive enhancements.
 
