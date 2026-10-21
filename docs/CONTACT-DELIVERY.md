@@ -92,3 +92,7 @@ There is no persistent queue or automatic SMTP retry. On failure/uncertain deliv
 - https://support.google.com/a/answer/176600
 - https://support.google.com/accounts/answer/185833
 - https://nodemailer.com/smtp
+
+## AJobs form — 2026-10-21
+
+AJobs reuses the owned endpoint and fixed `adam@athari.dev` recipient. The exact allowed origins now also include `https://ajobs.athari.dev`, `https://ajobs-phi.vercel.app`, and the owner-private saved Site `https://ajobs.athridev.chatgpt.site`. No wildcard origins or new mail provider were added. AJobs preserves the Business/Creator category values and prefixes the plain-text brief with AJobs, enquiry type, and visitor name. Existing athari.dev delivery behavior and credentials are unchanged. Backend regression tests now cover all three AJobs origins and token isolation between allowed origins.
