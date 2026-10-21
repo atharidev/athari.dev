@@ -44,3 +44,17 @@ test('SMTP rejection is honest and does not log private form contents', async ()
 test('per-instance burst control returns 429', async () => {
  const s = setup(); for (let i=0;i<5;i++) await s.POST(request(fields('bad'))); assert.equal((await s.POST(request(fields('bad')))).status, 429);
 });
+test('AJobs origins issue tokens and keep the fixed recipient', async () => {
+ for (const ajobsOrigin of ['https://ajobs.athari.dev','https://ajobs-phi.vercel.app','https://ajobs.athridev.chatgpt.site']) {
+  const s=setup();
+  const r=await s.GET(new Request(url,{headers:{origin:ajobsOrigin}}));
+  assert.equal(r.headers.get('Access-Control-Allow-Origin'),ajobsOrigin);
+  const {token}=await r.json();s.advance(1600);
+  const posted=await s.POST(request({...fields(token),message:'AJobs — Hiring enquiry'}, {origin:ajobsOrigin}));
+  assert.equal(posted.status,200);assert.equal(s.sent[0].message.to,'adam@athari.dev');
+ }
+});
+test('AJobs tokens cannot be used from another allowed origin', async () => {
+ const s=setup();const {token}=await(await s.GET(new Request(url,{headers:{origin:'https://ajobs.athari.dev'}}))).json();s.advance(1600);
+ assert.equal((await s.POST(request(fields(token)))).status,400);assert.equal(s.sent.length,0);
+});
