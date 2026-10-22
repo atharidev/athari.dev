@@ -19,10 +19,10 @@
   let width = 0, height = 0, dpr = 1, phase = .38;
   let x = 0, y = 0, targetX = 0, targetY = 0;
   const tau = Math.PI * 2;
-  const rings = Array.from({ length: 64 }, (_, line) => {
-    const u = line / 64 * tau;
-    return Array.from({ length: 113 }, (_, step) => {
-      const v = step / 112 * tau;
+  const rings = Array.from({ length: 56 }, (_, line) => {
+    const u = line / 56 * tau;
+    return Array.from({ length: 97 }, (_, step) => {
+      const v = step / 96 * tau;
       const fold = .052 * Math.sin(3 * v + u * 2);
       const radius = 1 + .345 * Math.cos(v);
       return [radius * Math.cos(u + fold), radius * Math.sin(u + fold), .345 * Math.sin(v)];
@@ -33,13 +33,13 @@
     ctx.clearRect(0, 0, width, height);
     const tilt = .91 + y * .065, yaw = phase + x * .12, turn = -.38;
     const cy = Math.cos(yaw), sy = Math.sin(yaw), ct = Math.cos(tilt), st = Math.sin(tilt);
-    const cr = Math.cos(turn), sr = Math.sin(turn), scale = Math.min(width, height) * .318;
+    const cr = Math.cos(turn), sr = Math.sin(turn), scale = Math.min(width, height) * .31;
     const paths = rings.map(ring => {
       let depth = 0;
       const points = ring.map(([px, py, pz]) => {
         const a = px * cy + pz * sy, b = -px * sy + pz * cy;
         const c = py * ct - b * st, z = py * st + b * ct;
-        const perspective = 4.6 / (4.6 + z);
+        const perspective = 4.4 / (4.4 + z);
         depth += z;
         return [width * .5 + (a * cr - c * sr) * scale * perspective,
           height * .5 + (a * sr + c * cr) * scale * perspective];
@@ -59,7 +59,7 @@
   function tick(time) {
     frame = 0;
     if (paused || reduced.matches || document.hidden || !visible || suspended) return;
-    if (time - last >= 32) {
+    if (time - last >= 42) {
       const elapsed = Math.min(time - last, 80);
       phase += elapsed * .000085;
       x += (targetX - x) * .055;
@@ -86,7 +86,7 @@
   function resize() {
     const rect = stage.getBoundingClientRect();
     width = rect.width; height = rect.height;
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    dpr = Math.min(window.devicePixelRatio || 1, 1.6);
     canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     update();

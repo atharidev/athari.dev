@@ -71,3 +71,12 @@ Until SMTP is configured, the endpoint returns `ready:false` and POST 503. The p
 - The owner requested live sculptural movement like Sabab and AJobs. `site.js` now projects a woven loop in canvas on the entrance and all localized introductions. The original SVG stays as a no-JavaScript/no-canvas fallback.
 - Keep sage/graphite branding, localized pause/play labels, reduced-motion support, offscreen/hidden-page suspension, touch scrolling and responsive sizing. The animation has no external dependencies.
 - The gateway uses the same artwork above its language choices on mobile. Keep its pause control outside the decorative aria-hidden region.
+
+## Business presentation refinement — 2026-10-22
+
+- The owner requested a more professional presentation and removal of the orbit symbols between focus areas. Keep the focus strip text-only, without orbit dividers or decorative headline/contact orbit marks.
+- `professional.css` refines the existing brand, hierarchy, service demos and contact presentation. Main ar/en pages include a three-step approach section and project CTA. No client claims, testimonials, employer affiliations or outcome metrics have been added.
+- Preserve interactive demo IDs, local-only demo behavior, enquiry prefill, fixed mail recipient, language selection, the live ripple and QR functionality.
+
+- Follow-up: artwork uses the Sabab/AJobs 56-thread geometry and matching 68% desktop / 390px phone composition. Remove writing, indices, corners and captions around it; retain an accessible pause control.
+- The Namaa website demo has working local navigation. Booking offers three future local dates, service duration and a preview summary. Operations supports search, local request creation (up to eight), status progression and reset. All demo records remain in memory and are never transmitted.

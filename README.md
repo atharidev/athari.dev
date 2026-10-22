@@ -31,3 +31,7 @@ First-time visitors choose Arabic or English; returning visitors go directly to 
 The four-module quiet zone, fixed code geometry and high contrast are retained during animation. Present mode, optional native sharing/clipboard, motion pause, and matching PNG downloads work without a third-party QR or tracking service. Fullscreen and screen wake lock are progressive enhancements.
 
 To regenerate: install Python `qrcode` and `Pillow`, then run `python scripts/generate-qr.py`. This synchronizes all SVG/PNG variants and the inline code bank. Install `zxing-cpp` to run `python tests/qr-decode.py`. Client behavior is checked with `node --test tests/qr-client.test.cjs`.
+
+## Business presentation
+
+`professional.css` refines the business-facing ar/en pages and the main language entrance. The hero matches the Sabab/AJobs artwork proportions without decorative captions. The service demos include local website navigation, booking date/duration summaries, and an operations desk with search, request creation, status changes, and reset. Demo state exists only in memory and does not create real appointments or send records.

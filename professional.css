@@ -1,0 +1,242 @@
+/* athari.dev — business presentation, retaining the graphite and sage identity. */
+body:not(.gateway){--muted:#b0b4a8;--dim:#8c9284}
+.business-page .page{width:min(100% - 96px,1200px)}
+.business-page .header{height:96px}
+.business-page .brand{font-size:25px;letter-spacing:-1.3px}
+.business-page nav{gap:28px;font-size:12px}
+.business-page nav>a{min-height:44px;display:inline-flex;align-items:center}
+.business-page .nav-connect{gap:12px;color:var(--text)}
+.business-page .language-switch{border-color:var(--line);border-radius:6px}
+.business-page .hero{min-height:640px;grid-template-columns:1.06fr 1fr;gap:4%;padding:70px 0 66px}
+.business-page .hero .eyebrow{font-size:10px;letter-spacing:1.05px;color:var(--muted);margin-bottom:26px}
+.business-page h1{font-size:clamp(66px,7.5vw,100px);letter-spacing:-5px;line-height:1.04;margin-bottom:28px}
+.business-page .hero-description{font-size:15px;line-height:1.9;max-width:43ch;margin-bottom:30px}
+.business-page .hero-actions{gap:24px;flex-wrap:wrap}
+.business-page .primary-link{padding:16px 20px;min-height:50px;font-size:12px;border-radius:6px}
+.secondary-link{display:inline-flex;align-items:center;min-height:44px;font-size:12px;color:var(--muted);text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--line);transition:color .2s,text-decoration-color .2s}
+.secondary-link:hover{color:var(--text);text-decoration-color:var(--accent)}
+.business-page .artwork figcaption{font-size:10px;color:var(--muted);border-color:transparent;padding-top:2px}
+.business-page .art-grid{opacity:.25}
+.business-page .art-stage::before{background:radial-gradient(ellipse,#d4edb308,transparent 65%)}
+.discipline-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:28px 0;font-size:10px;letter-spacing:.75px}
+.discipline-strip>span{padding:0 24px;border-inline-start:1px solid var(--line);line-height:1.8;text-align:center}
+.discipline-strip>span:first-child{padding-inline-start:0;border:0;text-align:start}
+.discipline-strip>span:last-child{padding-inline-end:0;text-align:end}
+.business-page .showcase{padding:90px 0 80px;border-bottom:0}
+.business-page .showcase-intro{grid-template-columns:1fr .8fr;gap:12%;margin-bottom:40px}
+.business-page .showcase h2,.approach h2{font-size:clamp(34px,3.8vw,48px);font-weight:400;line-height:1.2;letter-spacing:-2px;margin:0}
+.business-page .showcase-intro-copy>p{font-size:14px;line-height:1.9;margin-bottom:14px}
+.business-page .showcase-note{font-size:10px;color:var(--dim)}
+.business-page .demo-tabs{border-radius:0;border:0;border-bottom:1px solid var(--line);overflow:visible;margin-bottom:30px;gap:28px}
+.business-page .demo-tabs button{min-height:64px;padding:14px 0;border:0;font-size:13px;background:none;justify-content:flex-start;gap:12px}
+.business-page .demo-tabs button>svg{display:none}
+.business-page .demo-tabs button[aria-selected=true]{background:none;color:var(--text)}
+.business-page .demo-tabs button[aria-selected=true]::after{inset-inline:0;height:2px}
+.business-page .demo-tabs button:hover{background:none;color:var(--accent)}
+.business-page .demo-tab-number{display:inline;color:var(--dim);font-size:10px}
+.business-page .demo-category{color:var(--muted);font-size:11px}
+.business-page .demo-category svg{display:none}
+.business-page .demo-description h3{font-size:29px;line-height:1.3;letter-spacing:-1px}
+.business-page .demo-description>p{font-size:14px;line-height:1.9}
+.business-page .service-scope{font-size:12px;line-height:1.8;margin:21px 0}
+.business-page .service-scope li{gap:10px}
+.business-page .service-scope li::before{height:1px;width:8px;transform:translateY(-4px);border-radius:0;background:var(--dim)}
+.business-page .demo-enquire{font-size:12px;min-height:44px}
+.business-page .demo-preview{border-radius:12px;border-color:#d4edb32a;background:#161913;box-shadow:0 24px 80px #00000020}
+.business-page .demo-preview-bar{font-size:10px;min-height:46px;padding-inline:22px}
+.approach{padding:76px 0 85px;border-top:1px solid var(--line)}
+.approach-heading{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:44px}
+.approach-heading .eyebrow{margin-bottom:23px}
+.approach-heading>p{color:var(--muted);font-size:13px;line-height:1.8;margin:0 0 4px}
+.approach-steps{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;padding:0;margin:0}
+.approach-steps li{border-top:1px solid var(--line);padding-top:23px;min-width:0}
+.step-index{font:11px/1.5 ui-monospace,monospace;color:var(--accent);display:block;margin-bottom:25px}
+.approach-steps h3{font-size:20px;line-height:1.5;font-weight:400;letter-spacing:-.5px;margin:0 0 12px}
+.approach-steps p{font-size:13px;line-height:1.9;color:var(--muted);margin:0;max-width:33ch}
+.business-page .connect{padding:80px 0;gap:10%}
+.business-page .connect h2{font-size:clamp(34px,3.8vw,48px);line-height:1.2;letter-spacing:-2px}
+.business-page .connect p:not(.eyebrow){font-size:14px;line-height:1.9}
+.business-page .contact-panel{padding:30px;border-radius:12px;background:#171a14;border-color:var(--line)}
+.business-page .contact-panel::before{display:none}
+.business-page .contact-panel-heading{font-family:inherit;font-size:13px;letter-spacing:0;padding-bottom:21px;margin-bottom:24px}
+.business-page .contact-signal{display:none}
+.business-page .contact-kind legend,.business-page .contact-field>label{font-size:12px}
+.business-page .contact-choices span{min-height:48px;border-radius:6px}
+.business-page .contact-field input,.business-page .contact-field textarea{border-radius:6px;font-size:14px}
+.business-page .contact-submit{min-height:50px;border-radius:6px;font-size:12px}
+.business-page .contact-direct{font-size:15px;margin-top:24px}
+.business-page footer{font-size:11px;padding-block:28px}
+.business-page .footer-position{font-size:11px;color:var(--dim)}
+html[lang=ar] .business-page .hero .eyebrow{font-size:12px;letter-spacing:0}
+html[lang=ar] .business-page h1{font-size:clamp(68px,7.4vw,100px);letter-spacing:0;line-height:1.4}
+html[lang=ar] .business-page .hero-description{font-size:15px;line-height:2.1;letter-spacing:0}
+html[lang=ar] .business-page .secondary-link{font-size:12px}
+html[lang=ar] .business-page .showcase h2,html[lang=ar] .approach h2,html[lang=ar] .business-page .connect h2{font-family:'Noto Naskh Arabic',Georgia,serif;font-size:clamp(40px,4vw,54px);line-height:1.55;letter-spacing:0}
+html[lang=ar] .business-page .demo-description h3{font-size:34px;letter-spacing:0;line-height:1.6}
+html[lang=ar] .business-page .service-scope{font-size:12px;line-height:2}
+html[lang=ar] .business-page .demo-tabs button{font-size:13px}
+html[lang=ar] .approach-heading .eyebrow{font-size:12px}
+html[lang=ar] .step-index{font-family:inherit;letter-spacing:0}
+html[lang=ar] .approach-steps h3{font-size:19px;letter-spacing:0}
+html[lang=ar] .approach-steps p{font-size:13px;line-height:2.1}
+html[lang=ar] .business-page .contact-panel-heading,html[lang=ar] .business-page .contact-kind legend,html[lang=ar] .business-page .contact-field>label{font-size:13px}
+html[lang=ar] .discipline-strip{gap:0;font-size:11px}
+@media(max-width:1000px){
+ .business-page .page{width:calc(100% - 64px)}
+ .business-page nav{gap:19px}
+ .business-page .hero{gap:1%;min-height:580px}
+ .business-page h1{font-size:clamp(60px,8vw,85px);letter-spacing:-4px}
+ .business-page .hero-actions{gap:14px}
+ .discipline-strip>span{padding-inline:16px}
+ .approach-steps{gap:28px}
+}
+@media(max-width:760px){
+ .business-page .page{width:calc(100% - 40px)}
+ .business-page .header{height:82px}
+ .business-page .brand{font-size:23px}
+ .business-page nav{gap:16px;font-size:11px}
+ .business-page nav>a:first-child,.business-page nav>.nav-approach{display:none}
+ .business-page .hero{grid-template-columns:minmax(0,1fr);gap:12px;padding:50px 0 30px;min-height:0}
+ .business-page .hero .eyebrow{font-size:9px;letter-spacing:.45px;margin-bottom:24px}
+ .business-page h1{font-size:clamp(58px,13.6vw,92px);letter-spacing:-3.6px;line-height:1.06;margin-bottom:25px}
+ .business-page .hero-description{font-size:14px;line-height:1.95;max-width:40ch;margin-bottom:23px}
+ .business-page .hero-actions{gap:18px}
+ .business-page .primary-link{padding:14px 17px;font-size:11px;min-height:48px}
+ .secondary-link{font-size:11px}
+ .business-page .artwork{width:min(100%,440px);margin-top:4px}
+ .business-page .artwork figcaption{font-size:9px;min-height:44px}
+ .discipline-strip{grid-template-columns:1fr 1fr;row-gap:20px;padding:25px 0;font-size:9px;letter-spacing:.1px}
+ .discipline-strip>span{padding-inline:0 14px;text-align:start!important;border:0}
+ .discipline-strip>span:nth-child(even){padding-inline:16px 0;border-inline-start:1px solid var(--line);text-align:start!important}
+ .business-page .showcase{padding:58px 0}
+ .business-page .showcase-intro{grid-template-columns:minmax(0,1fr);gap:20px;margin-bottom:24px}
+ .business-page .showcase h2,.approach h2{font-size:36px;letter-spacing:-1.5px}
+ .business-page .showcase-intro-copy>p{font-size:13px;line-height:1.9}
+ .business-page .demo-tabs{gap:14px;margin-bottom:26px}
+ .business-page .demo-tabs button{font-size:11px;line-height:1.65;min-height:64px;padding:13px 0;align-items:flex-start;justify-content:flex-end;gap:8px;text-align:start}
+ .business-page .demo-tab-number{font-size:9px}
+ .business-page .demo-tabs button[aria-selected=true]::after{inset-inline:0}
+ .business-page .demo-description h3{font-size:27px}
+ .business-page .demo-description>p{font-size:13px}
+ .business-page .service-scope{display:block;font-size:11px;margin:17px 0}
+ .business-page .service-scope li{margin-top:8px}
+ .business-page .demo-preview{border-radius:9px}
+ .business-page .demo-preview-bar{font-size:9px;padding-inline:16px}
+ .approach{padding:52px 0 58px}
+ .approach-heading{display:block;margin-bottom:28px}
+ .approach-heading>p{font-size:12px;margin-top:18px}
+ .approach-steps{grid-template-columns:minmax(0,1fr);gap:25px}
+ .approach-steps li{position:relative;padding-inline-start:42px;padding-top:22px}
+ .step-index{position:absolute;inset-inline-start:0;top:27px;margin:0;font-size:10px}
+ .approach-steps h3{font-size:19px;margin-bottom:8px}
+ .approach-steps p{font-size:12px;max-width:43ch}
+ .business-page .connect{padding:55px 0;gap:30px}
+ .business-page .connect h2{font-size:36px;letter-spacing:-1.4px}
+ .business-page .connect p:not(.eyebrow){font-size:13px}
+ .business-page .contact-panel{padding:23px}
+ .business-page .contact-field input,.business-page .contact-field textarea{font-size:16px}
+ .business-page .contact-direct{font-size:14px}
+ .business-page footer{font-size:10px;gap:14px}
+ .business-page .footer-position{font-size:10px;margin-top:0}
+ html[lang=ar] .business-page h1{font-size:clamp(65px,16vw,90px);letter-spacing:0;line-height:1.35}
+ html[lang=ar] .business-page .hero .eyebrow{font-size:11px;letter-spacing:0}
+ html[lang=ar] .business-page .hero-description{font-size:14px}
+ html[lang=ar] .business-page .primary-link{font-size:12px}
+ html[lang=ar] .business-page .showcase h2,html[lang=ar] .approach h2,html[lang=ar] .business-page .connect h2{font-size:43px;letter-spacing:0;line-height:1.5}
+ html[lang=ar] .business-page .demo-tabs button{font-size:11px}
+ html[lang=ar] .business-page .demo-description h3{font-size:32px}
+ html[lang=ar] .business-page .service-scope{font-size:12px}
+ html[lang=ar] .discipline-strip{font-size:10px;line-height:2}
+}
+@media(max-width:350px){
+ .business-page nav{gap:10px;font-size:10px}
+ .business-page .brand{font-size:21px}
+ .business-page .hero-actions{gap:9px}
+ .business-page .primary-link{padding-inline:13px;gap:13px}
+ .secondary-link{font-size:10px}
+ .business-page .contact-panel{padding:19px}
+ .business-page .showcase h2,.approach h2{font-size:33px}
+}
+@media(prefers-reduced-motion:reduce){.secondary-link{transition:none}}
+/* The same loop, scale and open composition as Sabab and AJobs. */
+.business-page .hero{position:relative;display:flex;align-items:center;isolation:isolate;min-height:640px;padding:64px 0 90px}
+.business-page .hero-copy{width:49%;max-width:660px;position:relative;z-index:2}
+.hero .artwork{position:absolute;z-index:0;width:68%;height:calc(100% + 20px);right:-7%;left:auto;top:-12px;bottom:auto;pointer-events:none;margin:0;align-self:auto}
+.hero .art-stage{height:100%;width:100%;aspect-ratio:auto;perspective:none}
+.hero .art-stage::before,.hero .art-grid,.art-index,.art-point,.art-corner{display:none}
+.hero .artwork .art-controls{position:absolute;right:3%;bottom:30px;z-index:3;border:0;min-height:0;padding:0;pointer-events:auto}
+.hero .art-controls #motion-toggle{width:40px;height:40px;border:1px solid var(--line);background:var(--bg)}
+.hero .art-controls #motion-toggle:hover{border-color:var(--accent)}
+html[dir=rtl] .hero .artwork{right:auto;left:-7%}
+html[dir=rtl] .hero .artwork .art-controls{right:auto;left:3%}
+.gateway-stage{position:relative;display:flex;justify-content:flex-end;gap:0}
+.gateway-copy{width:49%;z-index:2}
+.gateway-art{position:absolute;width:68%;height:calc(100% + 20px);left:-7%;top:-12px;aspect-ratio:auto;pointer-events:none}
+.gateway-art .art-grid{display:none}
+.sample-nav{display:flex;gap:18px;font-size:10px;border-block:1px solid var(--line);padding-block:8px;margin:-12px 0 26px}
+.sample-nav button{min-height:34px;background:none;border:0;padding:6px 0;color:var(--dim);font-size:10px;cursor:pointer}
+.sample-nav button[aria-current=page]{color:var(--accent)}
+.sample-nav button:hover{color:var(--text)}
+[data-site-panel]{min-height:230px}
+[data-site-panel][hidden]{display:none}
+.sample-title{font-size:26px;font-weight:400;line-height:1.35;letter-spacing:-.8px;margin:0 0 20px}
+.sample-description{font-size:12px;color:var(--muted);line-height:1.9;max-width:44ch}
+.sample-services article{display:flex;gap:20px;border-top:1px solid var(--line);padding:14px 0}
+.sample-services article>span{font:9px monospace;color:var(--accent);padding-top:4px}
+.sample-services h5{font-size:13px;font-weight:400;margin:0 0 5px}
+.sample-services p{font-size:11px;color:var(--muted);line-height:1.7;margin:0}
+.sample-cta{display:inline-flex;gap:24px;align-items:center;margin-top:12px;padding:13px 16px;background:var(--accent);color:var(--bg);font-size:11px;border-radius:4px;min-height:44px}
+.business-page .demo-site-brand{margin-bottom:26px}
+.business-page .demo-brand-mark{display:none}
+.demo-day-group{padding:0;margin:20px 0;border:0;min-width:0}
+.demo-day-group legend,.demo-search-label,.demo-add-form>label{font-size:11px;line-height:1.8;color:var(--muted);padding:0;margin-bottom:10px;display:block}
+.demo-days{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.demo-days button{border:1px solid var(--line);color:var(--muted);font-family:inherit;font-size:10px;line-height:1.7;background:transparent;border-radius:5px;padding:10px 5px;min-height:47px;cursor:pointer}
+.demo-days button[aria-pressed=true]{color:var(--accent);border-color:#d4edb388;background:#d4edb30b}
+.booking-meta{display:flex;justify-content:space-between;gap:15px;margin:13px 0 23px;font-size:10px;color:var(--dim);line-height:1.7}
+.demo-booking-result strong{display:block;font-size:13px;font-weight:400;color:var(--accent);margin-bottom:7px}
+.demo-booking-result small{font-size:10px;line-height:1.8;color:var(--muted)}
+.business-page .demo-booking-result p{margin:0 0 6px;font-size:12px}
+.demo-search,.demo-add-form input{width:100%;min-width:0;padding:11px 13px;min-height:44px;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:5px;font-family:inherit;font-size:12px}
+.demo-search::placeholder,.demo-add-form input::placeholder{color:var(--dim);font-size:11px}
+.demo-progress-track{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin:20px 0 16px}
+.demo-progress-track span{height:100%;display:block;width:0;background:var(--accent);transition:width .3s}
+.demo-add-form{padding-top:22px}
+.demo-add-form>div{display:flex;gap:8px}
+.demo-add-form button{background:var(--accent);color:var(--bg);border:0;border-radius:5px;padding:10px 16px;min-height:44px;font-size:11px;flex-shrink:0;cursor:pointer}
+.business-page .demo-board-bottom{margin-top:14px}
+html[lang=ar] .sample-title{font-family:'Noto Naskh Arabic',serif;font-size:33px;letter-spacing:0;line-height:1.6}
+html[lang=ar] .sample-nav button,html[lang=ar] .demo-days button{font-size:11px}
+html[lang=ar] .sample-description,html[lang=ar] .sample-services p{font-size:12px}
+html[lang=ar] .sample-cta{font-size:12px}
+html[lang=ar] .sample-services h5{font-size:14px}
+@media(max-width:1000px) and (min-width:761px){
+ .business-page .hero-copy{width:55%}
+ .hero .artwork{width:77%;right:-15%;opacity:.85}
+ html[dir=rtl] .hero .artwork{left:-15%;right:auto}
+}
+@media(max-width:760px){
+ .business-page .hero{display:block;min-height:730px;padding:50px 0 390px}
+ .business-page .hero-copy{width:100%;max-width:none}
+ .hero .artwork{width:calc(100% + 88px);height:390px;top:auto;bottom:-2px;left:-44px;right:auto;opacity:.85}
+ html[dir=rtl] .hero .artwork{left:-44px;right:auto}
+ .hero .artwork .art-controls{right:44px;bottom:20px}
+ html[dir=rtl] .hero .artwork .art-controls{right:auto;left:44px}
+ .gateway-stage{display:block;padding:40px 0 390px;min-height:730px}
+ .gateway-copy{width:100%}
+ .gateway-art{position:absolute;width:calc(100% + 88px);height:390px;top:auto;bottom:-2px;left:-44px;opacity:.85;pointer-events:none}
+ .gateway .language-card{min-height:140px}
+ .business-page .sample-nav{margin-bottom:24px;gap:20px}
+ [data-site-panel]{min-height:240px}
+ .sample-title{font-size:25px}
+ .demo-days button{font-size:10px;padding-inline:3px}
+ .demo-search,.demo-add-form input{font-size:16px}
+ .booking-meta{font-size:9px;gap:9px}
+ .demo-day-group legend{font-size:11px}
+}
+@media(max-width:360px){.hero .artwork,.gateway-art{height:360px}.business-page .hero{padding-bottom:360px}.gateway-stage{padding-bottom:360px}.demo-days{gap:5px}.demo-days button{font-size:9px}.demo-add-form button{padding-inline:12px}}
+
+.demo-board-status{display:block;text-align:start;font-size:11px;line-height:1.8;color:var(--muted);margin-top:10px}.demo-board-status:empty{display:none}
+/* Explicit QR languages retain the same art bounds. */
+.hero{position:relative;isolation:isolate}
+@media(max-width:760px){body:not(.business-page) .hero{padding-bottom:390px;min-height:730px}}
