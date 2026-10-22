@@ -65,3 +65,9 @@ Until SMTP is configured, the endpoint returns `ready:false` and POST 503. The p
 - Hebrew uses RTL. Chinese uses platform CJK fonts. Artwork control labels and contact messages use authored locale text. Contact category values remain Creator/Business.
 - Say «الحوسبة السحابية» in Arabic, including the short hero eyebrow.
 - Regenerate all SVG, PNG and inline QR variants together with `python scripts/generate-qr.py`. Verify all eight with `python tests/qr-decode.py` and run `node --test tests/*.test.cjs`. Keep the picker touch targets and quiet zones intact.
+
+## Living ripple artwork — 2026-10-22
+
+- The owner requested live sculptural movement like Sabab and AJobs. `site.js` now projects a woven loop in canvas on the entrance and all localized introductions. The original SVG stays as a no-JavaScript/no-canvas fallback.
+- Keep sage/graphite branding, localized pause/play labels, reduced-motion support, offscreen/hidden-page suspension, touch scrolling and responsive sizing. The animation has no external dependencies.
+- The gateway uses the same artwork above its language choices on mobile. Keep its pause control outside the decorative aria-hidden region.

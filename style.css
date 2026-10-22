@@ -209,3 +209,28 @@ html[lang=ar] .showcase-footer p,html[lang=ar] .showcase-footer a{font-size:13px
 @media(max-width:1100px){.showcase-intro{gap:7%}.demo-panel{grid-template-columns:.8fr 1.2fr;gap:5%}.demo-tabs button{padding:17px 18px;gap:11px}.demo-website,.demo-board{padding:24px}.demo-booking{padding:27px 25px}.demo-tab-number{display:none}.demo-description h3{font-size:27px}.demo-site-hero{grid-template-columns:1.35fr .65fr}}
 @media(max-width:760px){.showcase{padding:64px 0 58px}.showcase-intro{grid-template-columns:minmax(0,1fr);gap:22px;margin-bottom:32px}.showcase h2{font-size:40px;letter-spacing:-1.8px}.showcase-intro .eyebrow{font-size:8px;margin-bottom:22px}.showcase-intro-copy>p{font-size:13px;max-width:44ch;margin-bottom:15px}.showcase-note{font-size:9px}.demo-tabs{margin-bottom:29px}.demo-tabs button{flex-direction:column;justify-content:center;gap:9px;text-align:center;padding:14px 5px;min-height:87px;font-size:10px;line-height:1.7}.demo-tabs button>svg{width:23px;height:23px}.demo-tabs button[aria-selected=true]::after{inset-inline:16px}.demo-panel{grid-template-columns:minmax(0,1fr);gap:28px;padding:0}.demo-description h3{font-size:27px;margin-bottom:13px}.demo-description>p{max-width:46ch}.demo-category{margin-bottom:16px}.demo-description ul{display:flex;flex-wrap:wrap;gap:8px 18px;margin:18px 0 17px;font-size:10px}.demo-description li{margin:0;gap:7px}.demo-enquire{font-size:11px;padding:10px 0}.demo-preview{width:min(100%,580px);justify-self:center}.demo-website,.demo-board{padding:23px 21px 20px}.demo-site-brand{margin-bottom:33px}.demo-site-copy h4{font-size:29px;line-height:1.3;letter-spacing:-1.3px}.demo-site-copy>p{font-size:10px}.demo-site-hero{grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr);gap:3px}.demo-site-details{font-size:10px}.demo-site-sculpture{margin-top:5px}.demo-site-footer{margin-top:28px}.demo-booking{padding:25px 23px 21px}.demo-select{font-size:16px}.demo-confirm{font-size:12px}.demo-slot{min-height:44px}.demo-request button{min-height:40px}.demo-board-filters button{min-height:38px}.demo-reset{min-height:40px;padding-top:12px}.showcase-footer{align-items:start;flex-direction:column;gap:10px;margin-top:33px;padding-top:23px}.showcase-footer p{font-size:11px}.showcase-footer a{font-size:11px}.demo-app-heading h4,.demo-board-heading h4{font-size:21px}html[lang=ar] .showcase h2{font-size:44px}html[lang=ar] .showcase-intro .eyebrow{font-size:11px}html[lang=ar] .showcase-intro-copy>p{font-size:14px}html[lang=ar] .demo-tabs button{font-size:11px}html[lang=ar] .demo-description h3{font-size:34px}html[lang=ar] .demo-description ul{font-size:11px}html[lang=ar] .demo-select{font-size:16px}html[lang=ar] .demo-site-copy h4,html[lang=ar] .demo-site-copy em{font-size:35px}html[lang=ar] .showcase-footer p,html[lang=ar] .showcase-footer a{font-size:12px}}
 @media(max-width:350px){.demo-website,.demo-board,.demo-booking{padding-inline:17px}.demo-site-hero{grid-template-columns:minmax(0,1fr)}.demo-site-sculpture{display:none}.demo-site-details{max-width:none}.demo-site-copy h4{font-size:30px}.demo-site-brand>span:last-child{font-size:6px}.demo-tabs button{font-size:9px}html[lang=ar] .demo-tabs button{font-size:10px}.demo-request{gap:8px}.demo-request button{padding-inline:8px}.demo-board-stats{gap:7px}.demo-board-stats>div{padding-inline-start:9px}}
+
+/* Living ripple: projected threads, with the original SVG as a no-script fallback. */
+.living-ripple{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.is-rendered .sculpture,.gateway-art.is-rendered>img{visibility:hidden;animation:none}
+.art-stage::before{inset:12%;background:radial-gradient(ellipse,#d4edb30d,transparent 67%)}
+.art-grid{opacity:.55}
+.art-point{display:none}
+.art-corner{opacity:.55}
+.art-index{z-index:1;pointer-events:none}
+.artwork figcaption{min-height:53px}
+#motion-toggle{min-width:44px;min-height:44px;border-color:transparent;transition:color .2s,border-color .2s}
+#motion-toggle:hover{border-color:var(--line)}
+#motion-toggle[aria-pressed=true] .pause-icon{display:none}
+#motion-toggle[aria-pressed=true] .play-icon{display:block}
+.gateway-footer #motion-toggle{margin-inline-start:auto}
+@media(max-width:760px){
+ .gateway-stage{flex-direction:column;gap:14px;padding:20px 0 44px;overflow:visible}
+ .gateway-art{position:relative;width:min(78vw,300px);inset:auto;opacity:1;z-index:0;flex-shrink:0;pointer-events:auto}
+ .gateway-copy{z-index:1}
+ .gateway h1.gateway-title{font-size:clamp(43px,11vw,60px)}
+ .gateway-prompt{margin-top:4px}
+ .language-card{min-height:140px}
+ .gateway-footer{justify-content:space-between}
+ .gateway-footer #motion-toggle{margin:0}
+}
