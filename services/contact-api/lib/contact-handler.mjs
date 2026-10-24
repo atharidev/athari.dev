@@ -1,5 +1,5 @@
 import { createHmac, randomUUID, timingSafeEqual } from 'node:crypto';
-const ORIGINS = new Set(['https://athari.dev', 'https://www.athari.dev', 'https://ajobs.athari.dev', 'https://sabab.athari.dev', 'https://sidor.athari.dev', 'https://sidor.athridev.chatgpt.site', 'https://ajobs-phi.vercel.app', 'https://ajobs.athridev.chatgpt.site']);
+const ORIGINS = new Set(['https://athari.dev', 'https://www.athari.dev', 'https://ajobs.athari.dev', 'https://sabab.athari.dev', 'https://sidor.athari.dev', 'https://sidor.vercel.app', 'https://sidor.athridev.chatgpt.site', 'https://ajobs-phi.vercel.app', 'https://ajobs.athridev.chatgpt.site']);
 const RECIPIENT = 'adam@athari.dev', WINDOW = 15 * 60 * 1000, MAX_BYTES = 4096;
 const emailValid = value => typeof value === 'string' && value.length <= 254 && /^[^\s<>\r\n@]{1,64}@[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?\.[a-z]{2,63}$/i.test(value);
 export function createHandlers({ getEnv, createTransport, now = Date.now, logError = console.error }) {
