@@ -58,3 +58,19 @@ test('AJobs tokens cannot be used from another allowed origin', async () => {
  const s=setup();const {token}=await(await s.GET(new Request(url,{headers:{origin:'https://ajobs.athari.dev'}}))).json();s.advance(1600);
  assert.equal((await s.POST(request(fields(token)))).status,400);assert.equal(s.sent.length,0);
 });
+
+test('Sabab business and provider onboarding keep role, callback details, and fixed recipient', async () => {
+ for (const collaboration of ['Business','Creator']) {
+  const s=setup(), sababOrigin='https://sabab.athari.dev';
+  const options=await s.OPTIONS(new Request(url,{method:'OPTIONS',headers:{origin:sababOrigin}}));
+  assert.equal(options.status,204);assert.equal(options.headers.get('Access-Control-Allow-Origin'),sababOrigin);
+  const {token}=await(await s.GET(new Request(url,{headers:{origin:sababOrigin}}))).json();s.advance(1600);
+  const message='Sabab — '+collaboration+'\nName: Test\nPhone / WhatsApp: +972501234567\nService: Repairs\nRequested follow-up: registration and guided onboarding.';
+  const r=await s.POST(request({...fields(token),collaboration,message},{origin:sababOrigin}));
+  assert.equal(r.status,200);assert.equal(s.sent[0].message.to,'adam@athari.dev');assert.ok(s.sent[0].message.text.includes(message));
+ }
+});
+test('Sabab tokens cannot be used from another allowed origin', async () => {
+ const s=setup();const {token}=await(await s.GET(new Request(url,{headers:{origin:'https://sabab.athari.dev'}}))).json();s.advance(1600);
+ assert.equal((await s.POST(request(fields(token)))).status,400);assert.equal(s.sent.length,0);
+});
