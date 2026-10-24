@@ -77,7 +77,7 @@ test('Sabab tokens cannot be used from another allowed origin', async () => {
 
 
 test('Sidor contractor and owner enquiries preserve exact origin, fixed recipient, and callback details', async () => {
- for (const sidorOrigin of ['https://sidor.athari.dev','https://sidor.athridev.chatgpt.site']) {
+ for (const sidorOrigin of ['https://sidor.athari.dev','https://sidor.vercel.app','https://sidor.athridev.chatgpt.site']) {
   for (const collaboration of ['Business','Creator']) {
    const s=setup(); const options=await s.OPTIONS(new Request(url,{method:'OPTIONS',headers:{origin:sidorOrigin}}));
    assert.equal(options.status,204); assert.equal(options.headers.get('Access-Control-Allow-Origin'),sidorOrigin);
