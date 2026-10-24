@@ -1,32 +1,20 @@
-/* The Athari venture collection. Static content, native links, no tracking. */
-.ventures{padding:88px 0 48px;border-bottom:1px solid var(--line);scroll-margin-top:36px}
-.ventures-heading{display:grid;grid-template-columns:1fr .8fr;gap:12%;align-items:end;margin-bottom:40px}
-.ventures h2{font-size:clamp(34px,3.8vw,48px);line-height:1.2;font-weight:400;letter-spacing:-2px;margin:0}
-.ventures-introduction>p{font-size:14px;line-height:1.95;color:var(--muted);max-width:43ch;margin:0 0 22px}
-.ventures-signature{display:inline-flex;align-items:center;gap:11px;color:var(--text);font-size:11px;letter-spacing:-.15px}
-.ventures-signature-mark{border:1px solid #d4edb33d;border-radius:4px;padding:6px 7px;color:var(--accent);font-size:11px;line-height:1.2}
-.ventures-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.venture-card{--venture-color:#6dd5b0;--venture-rgb:109,213,176;position:relative;isolation:isolate;min-width:0;display:flex;flex-direction:column;padding:26px 26px 0;background:linear-gradient(150deg,rgba(var(--venture-rgb),.045),transparent 65%);border:1px solid var(--line);border-top:2px solid rgba(var(--venture-rgb),.7);border-radius:4px;transition:border-color .25s,background-color .25s}
-.venture-ajobs{--venture-color:#a1cdf3;--venture-rgb:161,205,243}.venture-sidor{--venture-color:#edb45d;--venture-rgb:237,180,93}
-.venture-card:hover{border-color:rgba(var(--venture-rgb),.5);background-color:rgba(var(--venture-rgb),.025)}
-.venture-card:focus-visible{outline:2px solid var(--venture-color);outline-offset:5px}
-.venture-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:10px;line-height:1.8}
-.venture-index{font-size:10px;opacity:.5;font-variant-numeric:tabular-nums}
-.venture-identity{position:relative;padding:48px 0 22px;min-height:137px;display:flex;align-items:center}
-.venture-identity h3{position:relative;z-index:1;margin:0;font-size:38px;line-height:1.2;letter-spacing:-1.8px;font-weight:400;color:var(--text);display:flex;align-items:baseline;gap:14px}
-.venture-arabic{font-family:'Noto Naskh Arabic',serif;font-size:24px;letter-spacing:0;color:var(--venture-color);font-weight:400}
-.venture-art{position:absolute;inset-inline-end:-9px;top:5px;width:130px;height:130px;stroke:var(--venture-color);stroke-width:.65;fill:none;opacity:.21;pointer-events:none}
-.venture-description{font-size:12px;line-height:1.95;color:var(--muted);margin:0 0 24px;max-width:32ch;min-height:70px}
-.venture-state{font-size:9px;line-height:1.8;color:var(--venture-color);width:fit-content;border:1px solid rgba(var(--venture-rgb),.2);padding:4px 8px;border-radius:3px;margin-top:auto;margin-bottom:28px}
-.venture-card-bottom{border-top:1px solid var(--line);padding:19px 0;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:10px;color:var(--muted)}
-.venture-arrow{width:18px;height:18px;color:var(--venture-color);stroke-width:1.2;transition:transform .25s}
-.venture-card:hover .venture-arrow{transform:translate(2px,-2px)}
-.ventures-footnote{font-size:10px;color:var(--dim);line-height:1.8;margin:22px 0 0}
-html[lang=ar] .ventures h2{font-family:'Noto Naskh Arabic',serif;font-size:52px;letter-spacing:0;line-height:1.45}
-html[lang=ar] .ventures-introduction>p{font-size:13px;line-height:2.1}
-html[lang=ar] .venture-category{font-size:11px}html[lang=ar] .venture-description{font-size:12px;line-height:2.1}
-html[lang=ar] .venture-state,html[lang=ar] .ventures-footnote{font-size:11px;letter-spacing:0}
-html[dir=rtl] .venture-identity h3{flex-direction:row-reverse}html[dir=rtl] .venture-card-bottom{direction:ltr}
-@media(max-width:1000px){.venture-card{padding:22px 20px 0}.ventures-grid{gap:12px}.venture-identity h3{font-size:33px;gap:10px}.venture-description{font-size:11px}.venture-arabic{font-size:21px}}
-@media(max-width:760px){.ventures{padding:52px 0 35px}.ventures-heading{grid-template-columns:1fr;gap:21px;margin-bottom:28px}.ventures h2{font-size:36px;letter-spacing:-1.3px}.ventures-introduction>p{font-size:13px;max-width:42ch;margin-bottom:17px}.ventures-grid{grid-template-columns:1fr;gap:16px}.venture-card{padding:24px 24px 0}.venture-identity{padding:34px 0 16px;min-height:104px}.venture-identity h3{font-size:36px}.venture-description{min-height:0;max-width:42ch;font-size:12px;margin-bottom:18px}.venture-state{margin-bottom:24px}.venture-art{top:-10px;width:145px;height:145px}.venture-card-bottom{padding:18px 0}.ventures-footnote{max-width:40ch}html[lang=ar] .ventures h2{font-size:43px}.business-page nav>.nav-ventures{display:inline-flex}}
-@media(prefers-reduced-motion:reduce){.venture-card,.venture-arrow{transition:none}.venture-card:hover .venture-arrow{transform:none}}
+/* Clickable original venture identities. Identical track halves loop left to right. */
+.ventures{padding:55px 0 32px;border-bottom:1px solid var(--line);scroll-margin-top:36px;min-width:0}
+.ventures-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:18px}
+.ventures .eyebrow{margin:0 0 12px;color:var(--muted);font-size:10px;letter-spacing:.7px}
+.ventures h2{margin:0;font-size:24px;font-weight:400;line-height:1.4;letter-spacing:-.7px}
+.logo-motion{display:grid;place-items:center;flex-shrink:0;width:40px;height:40px;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:50%;cursor:pointer}
+.logo-motion:hover{color:var(--text);border-color:var(--muted)}.logo-motion svg{width:16px;height:16px;stroke-width:1.25}.logo-play{display:none}.logo-motion[aria-pressed=true] .logo-play{display:block}.logo-motion[aria-pressed=true] .logo-pause{display:none}
+.logo-window{direction:ltr;overflow:hidden;position:relative;isolation:isolate;mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}
+.logo-track{display:flex;width:max-content;animation:athari-logos-right 46s linear infinite;will-change:transform}
+.logo-group{display:flex;align-items:center;gap:100px;padding:20px 50px;flex-shrink:0}
+.venture-logo{display:flex;align-items:center;justify-content:center;flex:0 0 240px;width:240px;min-height:150px;padding:15px 6px;position:relative;opacity:.82;transition:opacity .2s,filter .2s}
+.venture-logo img{display:block;width:100%;height:100px;object-fit:contain;max-width:100%;pointer-events:none}
+.venture-logo-sabab img{height:94px;width:220px}.venture-logo-ajobs img{height:75px;width:222px}.venture-logo-sidor img{height:102px;width:240px}
+.venture-logo:hover,.venture-logo:focus-visible{opacity:1;filter:drop-shadow(0 0 16px #ffffff10)}
+.venture-logo:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:8px}
+.ventures[data-paused=true] .logo-track,.ventures[data-inactive=true] .logo-track,.logo-window:hover .logo-track,.logo-window:focus-within .logo-track{animation-play-state:paused}
+@keyframes athari-logos-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+html[lang=ar] .ventures h2{font-family:'Noto Naskh Arabic',serif;letter-spacing:0;font-size:32px}html[lang=ar] .ventures .eyebrow{font-size:11px;letter-spacing:0}
+@media(max-width:760px){.ventures{padding:36px 0 20px}.ventures-heading{margin-bottom:8px}.ventures h2{font-size:22px}.logo-group{gap:62px;padding:14px 31px}.venture-logo{flex-basis:185px;width:185px;min-height:130px}.venture-logo img{max-width:100%;height:82px}.venture-logo-sabab img{height:77px}.venture-logo-ajobs img{height:63px}.venture-logo-sidor img{height:84px}.logo-track{animation-duration:39s}.logo-window{margin-inline:-12px}.ventures .eyebrow{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.logo-track{animation:none;transform:none;width:100%;will-change:auto}.logo-group{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px;padding:25px 0;width:100%}.logo-group+.logo-group,.logo-repeat,.logo-motion{display:none}.venture-logo{width:100%;min-height:100px;opacity:1}.venture-logo img{width:100%;max-width:230px}.logo-window{mask-image:none}.venture-logo{transition:none}@media(max-width:480px){.logo-group{grid-template-columns:1fr;gap:8px}.venture-logo img{max-width:190px}}}
