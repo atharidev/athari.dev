@@ -1,0 +1,19 @@
+/* A concise service overview; the real products above provide the evidence. */
+.offerings{padding:64px 0 54px;scroll-margin-top:36px}
+.offerings-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:34px}
+.offerings .eyebrow{margin:0 0 18px;font-size:10px;color:var(--muted)}
+.offerings h2{font-size:clamp(30px,3.5vw,43px);line-height:1.25;letter-spacing:-1.7px;font-weight:400;margin:0}
+.offering-cta{display:inline-flex;gap:20px;align-items:center;min-height:44px;font-size:12px;color:var(--accent);white-space:nowrap}
+.offering-cta svg{width:18px;height:18px;stroke-width:1.25}
+.offering-cta:hover{color:var(--text)}
+.offerings-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px;list-style:none;margin:0;padding:0}
+.offerings-list>li{border-top:1px solid var(--line);padding-top:20px;min-width:0}
+.offering-index{display:block;font-size:10px;color:var(--dim);margin-bottom:20px;font-variant-numeric:tabular-nums}
+.offerings h3{font-size:18px;line-height:1.5;font-weight:400;letter-spacing:-.5px;margin:0 0 10px}
+.offerings-list p{font-size:12px;line-height:1.95;color:var(--muted);max-width:38ch;margin:0}
+html[lang=ar] .offerings h2{font-family:'Noto Naskh Arabic',serif;font-size:48px;letter-spacing:0;line-height:1.5}
+html[lang=ar] .offerings h3{font-size:17px;letter-spacing:0}
+html[lang=ar] .offerings .eyebrow{font-size:11px;letter-spacing:0}
+html[lang=ar] .offerings-list p{font-size:12px;line-height:2.1}
+html[lang=ar] .offering-cta{font-size:12px}
+@media(max-width:760px){.offerings{padding:44px 0 34px}.offerings-heading{display:block;margin-bottom:27px}.offerings h2{font-size:34px;letter-spacing:-1.2px}.offering-cta{margin-top:16px;font-size:11px}.offerings-list{grid-template-columns:1fr;gap:24px}.offerings-list>li{position:relative;padding-top:19px;padding-inline-start:32px}.offering-index{position:absolute;inset-inline-start:0;top:24px;margin:0;font-size:9px}.offerings h3{font-size:17px;margin-bottom:6px}.offerings-list p{max-width:43ch;font-size:12px}html[lang=ar] .offerings h2{font-size:40px}html[lang=ar] .offerings h3{font-size:17px}}

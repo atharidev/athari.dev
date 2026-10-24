@@ -80,3 +80,7 @@ Until SMTP is configured, the endpoint returns `ready:false` and POST 503. The p
 
 - Follow-up: artwork uses the Sabab/AJobs 56-thread geometry and matching 68% desktop / 390px phone composition. Remove writing, indices, corners and captions around it; retain an accessible pause control.
 - The Namaa website demo has working local navigation. Booking offers three future local dates, service duration and a preview summary. Operations supports search, local request creation (up to eight), status progression and reset. All demo records remain in memory and are never transmitted.
+
+## Compact services — 2026-10-24 (current owner decision)
+
+The owner requested removing the interactive demos beneath the venture logos because the real products already demonstrate the work. This supersedes earlier instructions to preserve the demo section on the main ar/en pages. Keep the five-logo marquee, and use the short three-service overview in `services.css` at `#showcase`, with one contact link. Main ar/en pages no longer load `showcase.js`. Retained demo source and tests are historical, not a requirement to restore the demos. Keep the existing approach section, language navigation, artwork, contact form and mail delivery behavior. Verify static layout, anchor links, and Arabic/English mobile parity for changes to the overview; demo interaction tests do not apply to this retired UI.
