@@ -84,3 +84,7 @@ Until SMTP is configured, the endpoint returns `ready:false` and POST 503. The p
 ## Compact services — 2026-10-24 (current owner decision)
 
 The owner requested removing the interactive demos beneath the venture logos because the real products already demonstrate the work. This supersedes earlier instructions to preserve the demo section on the main ar/en pages. Keep the five-logo marquee, and use the short three-service overview in `offerings.css` at `#showcase`, with one contact link. Main ar/en pages no longer load `showcase.js`. Retained demo source and tests are historical, not a requirement to restore the demos. Keep the existing approach section, language navigation, artwork, contact form and mail delivery behavior. Verify static layout, anchor links, and Arabic/English mobile parity for changes to the overview; demo interaction tests do not apply to this retired UI.
+
+## Hamra rebrand — 2026-10-29
+
+The owner renamed Sidor to HAMRA / حمرا / חמרה. Preserve the shared outlined SVG artwork at assets/hamra-logo.svg and the identical venture-hamra symbol in ar/en. Use hamra.athari.dev for the venture link. The frontend remains minimal and trilingual; the API retains legacy Sidor origins plus the two exact Hamra origins.
