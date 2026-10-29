@@ -89,4 +89,4 @@ The owner requested removing the interactive demos beneath the venture logos bec
 
 The owner renamed Sidor to HAMRA / حمرا / חמרה. Preserve the shared outlined SVG artwork at assets/hamra-logo.svg and the identical venture-hamra symbol in ar/en. Use hamra.athari.dev for the venture link. The frontend remains minimal and trilingual; the API retains legacy Sidor origins plus the two exact Hamra origins.
 
-- Current owner correction: the Hamra identity uses only the English HAMRA wordmark and an uppercase H icon with a horizontal crossbar. Do not add Arabic or Hebrew brand lettering to either site logo. The landing-page language options stay Arabic, Hebrew, and English.
+- Current owner correction: the Hamra identity is a single English HAMRA wordmark. Its first letter is the styled angular orange H with a slanted crossbar, followed by cream AMRA. Never show a standalone H beside a second H in HAMRA. Do not add Arabic or Hebrew brand lettering to either site logo. The landing-page language options stay Arabic, Hebrew, and English.
