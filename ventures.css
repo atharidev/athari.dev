@@ -30,4 +30,4 @@ html[lang=ar] .ventures h2{font-family:'Noto Naskh Arabic',serif;letter-spacing:
 
 .venture-logo-athar>svg{width:188px;height:112px}@media(max-width:760px){.venture-logo-athar>svg{width:154px;height:94px}}
 
-.venture-logo-hamra>svg{width:240px;height:auto;aspect-ratio:410/112}@media(max-width:760px){.venture-logo-hamra>svg{width:185px;height:auto}}
+.venture-logo-hamra>svg{width:240px;height:auto;aspect-ratio:410/84}@media(max-width:760px){.venture-logo-hamra>svg{width:185px;height:auto}}
