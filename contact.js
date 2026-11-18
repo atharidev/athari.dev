@@ -17,18 +17,20 @@
     connecting: 'جارٍ تهيئة الإرسال الآمن…', sending: 'جارٍ الإرسال…',
     sendingStatus: 'جارٍ إرسال طلبك بأمان…', submit: 'لنبدأ الحديث',
     rateLimited: 'يُرجى الانتظار بضع دقائق قبل المحاولة مجدّدًا، أو التواصل مباشرة عبر adam@athari.dev.',
+    invalid: 'تحقّق من عنوان بريدك الإلكتروني ومن طول الرسالة، ثم حاول مجدّدًا.',
     unconfirmed: 'لم نتمكّن من تأكيد الإرسال. بياناتك ما زالت محفوظة في النموذج. حاول مجدّدًا، أو راسل adam@athari.dev مباشرة.'
   } : {
     unavailable: 'The form is being connected. Please email adam@athari.dev directly for now.',
     connecting: 'Connecting secure email delivery…', sending: 'Sending…',
     sendingStatus: 'Sending your enquiry securely…', submit: 'Start a conversation',
     rateLimited: 'Please wait a few minutes before trying again, or email adam@athari.dev directly.',
+    invalid: 'Please check your email address and message length, then try again.',
     unconfirmed: 'Couldn’t confirm delivery. Your details are still here. Try again, or email adam@athari.dev directly.'
   });
   const unavailable = copy.unavailable;
   async function request(options) {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 22000);
+    const timer = setTimeout(() => controller.abort(), 32000);
     try {
       const response = await fetch(endpoint, { ...options, credentials: 'omit', cache: 'no-store', signal: controller.signal });
       const result = await response.json();
@@ -41,11 +43,15 @@
     token = result.token; issued = Date.now();
     await new Promise(resolve => setTimeout(resolve, Math.min(2500, Math.max(1500, result.minWaitMs || 1500))));
   }
+  let retries = 0;
   async function initialize() {
     if (initialized) return; initialized = true;
     status.textContent = copy.connecting;
     try { await challenge(); ready = true; button.disabled = false; status.textContent = ''; }
-    catch { status.textContent = unavailable; button.disabled = true; }
+    catch {
+      status.textContent = unavailable; button.disabled = true;
+      if (retries < 2) { retries += 1; initialized = false; form.addEventListener('focusin', () => { void initialize(); }, { once: true }); }
+    }
   }
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
@@ -66,6 +72,7 @@
       token = '';
       if (!response.ok || result.success !== true) {
         if (response.status === 503) { ready = false; throw new Error('unavailable'); }
+        if (response.status === 422) throw new Error('invalid');
         if (response.status === 429) throw new Error('rate_limited');
         throw new Error('unconfirmed');
       }
@@ -74,6 +81,7 @@
       token = ''; status.dataset.error = '';
       status.textContent = error.message === 'unavailable' ? unavailable : error.message === 'rate_limited'
         ? copy.rateLimited
+        : error.message === 'invalid' ? (copy.invalid || copy.unconfirmed)
         : copy.unconfirmed;
     } finally {
       pending = false; button.disabled = !ready; button.removeAttribute('aria-busy'); label.textContent = copy.submit;

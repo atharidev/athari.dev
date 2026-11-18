@@ -12,7 +12,7 @@ for code,c in locales.items():
  h=re.sub(r'(<p class="eyebrow entrance">)[\s\S]*?</p>',lambda m:m[1]+e(c['eyebrow'])+'</p>',h)
  h=re.sub(r'(<h1[^>]*>)[\s\S]*?</h1>',lambda m:m[1]+e(c['title'][0])+'<br><span class="serif">'+e(c['title'][1])+'</span></h1>',h)
  h=re.sub(r'(<p class="hero-description entrance">)[\s\S]*?</p>',lambda m:m[1]+e(c['intro'])+'</p>',h)
- h=h.replace('Discuss your project',e(c['explore']))
+ h=h.replace('<a class="primary-link" href="#connect">Discuss your project','<a class="primary-link" href="#showcase">'+e(c['explore']))
  h=re.sub(r'<a class="secondary-link"[\s\S]*?</a>','',h)
  h=h.replace('FIG. 01 — THE RIPPLE EFFECT',e(c['artindex'])).replace('One idea. Infinite possibility.',e(c['artpoint'])).replace('Small beginnings. Lasting impact.',e(c['caption']))
  h=h.replace('Animated abstract artwork',e(c['artindex']))
@@ -23,20 +23,20 @@ for code,c in locales.items():
   services+=f'<article class="principle"><span class="number">0{i}</span><div><h3>{e(title)}</h3><p>{e(description)}</p></div></article>'
  services+='</div></section>'
  f=contact
- replacements={'03 / Get in touch':c['contact'],'Tell me what your business needs. We’ll work out the right next step.':c['connectIntro'],'Your project starts here':c['beginning'],'02 / Get in touch':c['contact'],'Have a project in mind? Tell me what you need.':c['connectIntro'],'A small beginning.':c['beginning'],'I’m reaching out as a':c['kind'],'>Creator<':'>'+c['creator']+'<','>Business<':'>'+c['business']+'<','Your email':c['email'],'What do you have in mind?':c['message'],'Optional':c['optional'],'An idea, a challenge, a possibility…':c['placeholder'],'Start a conversation':c['submit'],'Only to reply to your enquiry. No mailing list.':c['privacy'],'The form is being connected. Please email adam@athari.dev directly for now.':c['messages']['unavailable'],'A conversation, started.':c['successTitle'],'Your enquiry has been received. Thanks for reaching out.':c['successBody'],'Collaboration enquiry':c['contact']}
+ replacements={'04 / Get in touch':c['contact'],'03 / Get in touch':c['contact'],'Tell me what your business needs. We’ll work out the right next step.':c['connectIntro'],'Your project starts here':c['beginning'],'02 / Get in touch':c['contact'],'Have a project in mind? Tell me what you need.':c['connectIntro'],'A small beginning.':c['beginning'],'I’m reaching out as a':c['kind'],'>Creator<':'>'+c['creator']+'<','>Business<':'>'+c['business']+'<','Your email':c['email'],'What do you have in mind?':c['message'],'Optional':c['optional'],'An idea, a challenge, a possibility…':c['placeholder'],'Start a conversation':c['submit'],'Only to reply to your enquiry. No mailing list.':c['privacy'],'The form is being connected. Please email adam@athari.dev directly for now.':c['messages']['unavailable'],'A conversation, started.':c['successTitle'],'Your enquiry has been received. Thanks for reaching out.':c['successBody'],'Collaboration enquiry':c['contact']}
  for a,b in replacements.items():f=f.replace(a,e(b) if not a.startswith('>') else b)
  f=re.sub(r'(<h2 id="connect-title">)[\s\S]*?</h2>',lambda m:m[1]+e(c['connectTitle'][0])+'<br><span class="serif">'+e(c['connectTitle'][1])+'</span></h2>',f)
  f=re.sub(r'<noscript>[\s\S]*?</noscript>','<noscript><p class="contact-privacy">'+e(c['nojs'])+' <a href="mailto:adam@athari.dev">adam@athari.dev</a></p></noscript>',f)
  f=f.replace('id="collaboration-form"','id="collaboration-form" data-messages="'+e(json.dumps(c['messages'],ensure_ascii=False))+'"')
  page=f'''<!doctype html>
-<html lang="{code}" dir="{c['dir']}"><head>
+<html lang="{'zh-Hans' if code=='zh' else code}" dir="{c['dir']}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#121410">
 <title>athari.dev — {e(' '.join(c['title']))}</title><meta name="description" content="{e(c['intro'])}">
 <meta property="og:type" content="website"><meta property="og:title" content="athari.dev — {e(' '.join(c['title']))}"><meta property="og:description" content="{e(c['intro'])}"><meta property="og:url" content="https://athari.dev/{code}/"><meta property="og:image" content="https://athari.dev/og.png?v=20261017">
 <link rel="canonical" href="https://athari.dev/{code}/"><link rel="alternate" hreflang="ar" href="https://athari.dev/ar/"><link rel="alternate" hreflang="en" href="https://athari.dev/en/"><link rel="alternate" hreflang="{code}" href="https://athari.dev/{code}/"><link rel="alternate" hreflang="x-default" href="https://athari.dev/">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261019-dev"><link rel="stylesheet" href="/style.css?v=20261022-living-ripple"><link rel="stylesheet" href="/extra-languages.css?v=20261019"><script src="/site.js?v=20261022-sabab-art" defer></script><script src="/contact.js?v=20261019-extra" defer></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261019-dev"><link rel="stylesheet" href="/style.css?v=20261119-focus"><link rel="stylesheet" href="/extra-languages.css?v=20261019"><script src="/site.js?v=20261022-sabab-art" defer></script><script src="/contact.js?v=20261119-retry" defer></script>
 <link rel="stylesheet" href="/professional.css?v=20261022-product-demos"></head><body id="top"><a class="skip" href="#main">{e(c['skip'])}</a><div class="page">
-<header class="header"><a class="brand" dir="ltr" href="#top" aria-label="athari.dev"><span>athari<span class="brand-extension">.dev</span></span></a><nav aria-label="{e(c['explore'])}"><a href="#connect">{e(c['contact'])}</a><a class="language-switch" href="/ar/" lang="ar" dir="rtl">العربية</a><a class="language-switch" href="/en/" lang="en" dir="ltr">English</a></nav></header>
+<header class="header"><a class="brand" dir="ltr" href="#top" aria-label="athari.dev"><span>athari<span class="brand-extension">.dev</span></span></a><nav aria-label="athari.dev"><a href="#connect">{e(c['contact'])}</a><a class="language-switch" href="/ar/" lang="ar" dir="rtl">العربية</a><a class="language-switch" href="/en/" lang="en" dir="ltr">English</a></nav></header>
 <main id="main">{h}{services}{f}</main><footer><a class="footer-brand" dir="ltr" href="#top">athari.dev</a><span>© <span id="year">2026</span></span></footer></div></body></html>'''
  folder=ROOT/code;folder.mkdir(exist_ok=True);(folder/'index.html').write_text(page)
  print('Built',code)
