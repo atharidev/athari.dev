@@ -100,3 +100,9 @@ The owner asked for the main site to share Sabab's look and feel. This supersede
 - The last card is the open seat («مشروعك» / Your project): an ink wireframe that sketches itself, types its title and fills its button once, linking to `#connect` and preselecting Business only when nothing is chosen. On narrow windows the cards are a sideways rail; mice get arrow buttons (`any-pointer: fine`) and drag, touch swipes natively.
 - Creator | Business is one segmented control (CSS only); the values stay `Creator`/`Business`.
 - All of this lives in `refine.css`, loaded last. Checks: `node --check theme.js refine.js site.js`, `node --test tests/*.test.cjs`, then look at ar/en × light/dark × phone/desktop.
+
+## Professional palette, favicon and "Traces" — 2026-11-24 (current owner decision)
+
+The owner asked for a more professional, non-neon look. On ar/en: graphite (`#0f1012`) and paper (`#f4f2ed`) with ivory/ink text and one restrained brass accent (`#c8b28a` dark, `#8a6c3a` light); no lime. Buttons are solid ink pills in both themes. The favicon is the Manrope lowercase "a" in ivory with a brass dot (for ".dev") on graphite (`favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`); avoid knot/triquetra marks. `og.png` is rendered from the dark hero.
+
+`site.js` is now "Traces": two families of threads wind around the brand ring in opposite directions (a woven lattice), and on each a brass-tipped head leaves a fading ivory/ink trail, so the ring is always being drawn (أثر, a trace). The tube breathes in a slow travelling wave, follows the mouse, turns slightly with scroll, grows in over ~2.4s, pauses offscreen/hidden, honours the pause button and reduced motion (a still, finished frame), and uses fewer threads on small screens. It redraws on the `athari-theme` event.

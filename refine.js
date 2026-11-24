@@ -13,7 +13,7 @@
   try { chosen = localStorage.getItem('athari-theme'); } catch {}
   const apply = theme => {
     root.dataset.theme = theme;
-    if (meta) meta.setAttribute('content', theme === 'light' ? '#f2f0e8' : '#121410');
+    if (meta) meta.setAttribute('content', theme === 'light' ? '#f4f2ed' : '#0f1012');
     if (mode) mode.setAttribute('aria-label', theme === 'light' ? mode.dataset.labelDark : mode.dataset.labelLight);
     window.dispatchEvent(new CustomEvent('athari-theme', { detail: theme }));
   };
