@@ -90,3 +90,14 @@ The owner requested removing the interactive demos beneath the venture logos bec
 The owner renamed Sidor to HAMRA / حمرا / חמרה. Preserve the shared outlined SVG artwork at assets/hamra-logo.svg and the identical venture-hamra symbol in ar/en. Use hamra.athari.dev for the venture link. The frontend remains minimal and trilingual; the API retains legacy Sidor origins plus the two exact Hamra origins.
 
 - Current owner correction: the Hamra identity is a single English HAMRA wordmark. Its first letter is the styled angular orange H with a slanted crossbar, followed by cream AMRA. Never show a standalone H beside a second H in HAMRA. Do not add Arabic or Hebrew brand lettering to either site logo. The landing-page language options stay Arabic, Hebrew, and English.
+
+## Sabab-family refinement — 2026-11-24 (current owner decision)
+
+The owner asked for the main site to share Sabab's look and feel. This supersedes the five-logo marquee note above and the mono, numbered section labels. On the ar/en pages:
+
+- `theme.js` (blocking, in `<head>`) sets `data-theme` before first paint: the saved `athari-theme`, otherwise the device's light/dark preference. `refine.js` owns the toggle and follows device changes until a visitor chooses. Light is warm paper (`#f2f0e8`) with graphite ink and deep sage; the living ripple draws in ink on paper (`site.js` reads `data-theme` and redraws on the `athari-theme` event). The gateway, QR and extra-locale pages stay graphite-only.
+- Header: brand, theme toggle and the round language globe together at the start; quiet section links; one "Let’s talk" pill at the end. The globe is the same control as the Sabab app/site (meridians turn a quarter on arrival, open and answer; nothing loops). It lists Arabic and English only; its links keep `data-language`, so `language.js` still remembers the choice and carries the hash. Without JavaScript the globe stays open.
+- Ventures are cards with real phone screenshots in `assets/ventures/screens/` (Arabic and English where the product has both). The card stage stays graphite in both themes, so every brand keeps its own logo colours (HAMRA stays orange H + cream AMRA). Logo symbols remain the inline `<symbol>`s; `.venture-mark` forces LTR so SVG wordmarks never reverse on Arabic pages. Re-capture screenshots when a product's first screen changes visibly. `ventures.css`/`ventures.js` are retired from these pages.
+- Services use line icons drawn once in ink (`[data-ink]`, paths with `pathLength="1"`); the approach steps share one drawn line. Reduced motion shows everything at rest.
+- Creator | Business is one segmented control (CSS only); the values stay `Creator`/`Business`.
+- All of this lives in `refine.css`, loaded last. Checks: `node --check theme.js refine.js site.js`, `node --test tests/*.test.cjs`, then look at ar/en × light/dark × phone/desktop.

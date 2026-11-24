@@ -31,6 +31,7 @@
   function draw() {
     if (!width || !height) return;
     ctx.clearRect(0, 0, width, height);
+    const paper = document.documentElement.dataset.theme === 'light';
     const tilt = .91 + y * .065, yaw = phase + x * .12, turn = -.38;
     const cy = Math.cos(yaw), sy = Math.sin(yaw), ct = Math.cos(tilt), st = Math.sin(tilt);
     const cr = Math.cos(turn), sr = Math.sin(turn), scale = Math.min(width, height) * .31;
@@ -50,8 +51,11 @@
       const light = Math.max(0, Math.min(1, .5 - path.depth * .45));
       ctx.beginPath();
       path.points.forEach(([px, py], i) => i ? ctx.lineTo(px, py) : ctx.moveTo(px, py));
-      ctx.strokeStyle = `rgba(${Math.round(157 + light * 55)},${Math.round(183 + light * 54)},${Math.round(123 + light * 56)},${.15 + light * .48})`;
-      ctx.lineWidth = .72;
+      // Sage light on graphite; graphite ink on paper in the light theme.
+      ctx.strokeStyle = paper
+        ? `rgba(${Math.round(128 - light * 86)},${Math.round(146 - light * 89)},${Math.round(108 - light * 76)},${.2 + light * .52})`
+        : `rgba(${Math.round(157 + light * 55)},${Math.round(183 + light * 54)},${Math.round(123 + light * 56)},${.15 + light * .48})`;
+      ctx.lineWidth = paper ? .78 : .72;
       ctx.stroke();
     }
     artwork.classList.add('is-rendered');
@@ -92,6 +96,7 @@
     update();
   }
   toggle.addEventListener('click', () => { paused = !paused; update(); });
+  window.addEventListener('athari-theme', draw);
   reduced.addEventListener('change', update);
   document.addEventListener('visibilitychange', update);
   // Mouse parallax stays local to the artwork; scrolling and touch remain native.
