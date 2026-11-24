@@ -95,7 +95,6 @@ html[dir=rtl] .venture-mark{inset-inline-start:auto;left:auto;right:24px}
 .globe-btn:focus-visible{outline-offset:-3px}
 .venture-mark-sabab{height:34px}
 .venture-mark-ajobs{height:28px}
-.venture-mark-hamra{height:22px}
 .venture-mark-brainstorm{height:26px}
 .venture-mark-qibla{height:32px}
 .venture-mark-athar{height:40px;top:20px}
@@ -163,6 +162,45 @@ html[dir=rtl] .contact-choices:has(label:nth-child(2) input:checked)::before{tra
 .contact-choices input:focus-visible+span{outline-offset:1px}
 html[data-theme=light] .contact-choices::before{background:#fff}
 
+/* ---------- the open seat: "your project", sketched in ink as it arrives ---------- */
+.venture-grid>li.yp-item{--li:.55s}
+.yp-tag{position:absolute;z-index:3;top:22px;inset-inline-start:22px;display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 13px 0 10px;border:1px dashed #d4edb370;border-radius:999px;color:#d4edb3;font-size:12px;white-space:nowrap}
+html[dir=rtl] .yp-tag{padding:0 10px 0 13px}
+html[lang=ar] .yp-tag{font-size:13px}
+.yp-tag svg{width:13px;height:13px;stroke-width:1.8}
+.venture-device .yp-screen{display:block;width:100%;height:auto;aspect-ratio:560/1211;border-radius:26px;background:#10130e;color:#d4edb3;fill:none;stroke:currentColor;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round;transition:box-shadow .5s}
+.yp-grid{stroke:none;fill:url(#yp-dots)}
+.yp-screen pattern circle{fill:#d4edb326;stroke:none}
+.yp-screen text{stroke:none}
+.yp-title{fill:#eeeee5;font:italic 400 27px Georgia,'Times New Roman',serif;letter-spacing:-1px}
+html[lang=ar] .yp-title{font:400 27px 'Noto Naskh Arabic',Georgia,serif;letter-spacing:0}
+/* The title types itself once the sketch is down; the button fills last. */
+.yp-cover{fill:#10130e;stroke:none;transform-box:fill-box;transform-origin:right;transform:scaleX(0);transition:transform .95s steps(8,end) 1.75s}
+html[dir=rtl] .yp-cover{transform-origin:left}
+[data-ink-ready] .venture-grid:not(.inked) .yp-cover{transform:scaleX(1)}
+.yp-fill{fill:#d4edb3;stroke:none}
+.yp-label{fill:#141611;font:600 11px Manrope,Arial,sans-serif;text-anchor:middle;dominant-baseline:middle}
+html[lang=ar] .yp-label{font:600 12px 'Noto Sans Arabic',Tahoma,sans-serif}
+.yp-fill,.yp-label{transition:opacity .7s ease 2.35s}
+[data-ink-ready] .venture-grid:not(.inked) .yp-fill,[data-ink-ready] .venture-grid:not(.inked) .yp-label{opacity:0}
+.venture-status[data-status=open]{color:var(--accent);border-style:dashed;border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
+.yp:hover .yp-screen{box-shadow:0 0 0 1px #d4edb340,0 0 46px -6px #d4edb340}
+.yp .venture-stage{background:radial-gradient(110% 75% at 50% 108%,#d4edb32e,transparent 68%),repeating-linear-gradient(90deg,#d4edb308 0 1px,transparent 1px 28px),repeating-linear-gradient(0deg,#d4edb308 0 1px,transparent 1px 28px),var(--shelf)}
+
+/* ---------- rail controls: arrows and mouse drag when the row scrolls sideways ---------- */
+.ventures-side{display:flex;align-items:flex-end;gap:22px}
+.rail-nav{display:flex;gap:8px;flex:none}
+.rail-nav[hidden]{display:none}
+.rail-btn{display:grid;place-items:center;width:40px;height:40px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;transition:border-color .2s,opacity .2s,transform .2s}
+.rail-btn:hover:not(:disabled){border-color:var(--dim)}
+.rail-btn:active:not(:disabled){transform:scale(.94)}
+.rail-btn:disabled{opacity:.35;cursor:default}
+.rail-btn svg{width:18px;height:18px;stroke-width:1.7}
+.rail-btn[data-rail="1"] svg,html[dir=rtl] .rail-btn[data-rail="-1"] svg{transform:scaleX(-1)}
+html[dir=rtl] .rail-btn[data-rail="1"] svg{transform:none}
+.venture-grid.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.venture-grid.dragging a{pointer-events:none}
+
 /* ---------- tablet ---------- */
 @media(max-width:1100px){
   .business-page nav{gap:22px}
@@ -204,9 +242,11 @@ html[data-theme=light] .contact-choices::before{background:#fff}
   .ventures h2{font-size:34px;letter-spacing:-1.2px}
   html[lang=ar] .ventures h2{font-size:40px}
   .ventures-lead{text-align:start;margin-top:12px;font-size:13px}
+  .ventures-side{margin-top:12px;justify-content:space-between;align-items:center}
+  .ventures-side .ventures-lead{margin:0}
   html[lang=ar] .ventures-lead{font-size:14px}
   /* A rail of cards, one and a bit in view. */
-  .venture-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:80%;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:-20px;padding:2px 20px 14px;scroll-padding-inline:20px}
+  .venture-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(80%,330px);gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:-20px;padding:2px 20px 14px;scroll-padding-inline:20px}
   .venture-grid::-webkit-scrollbar{display:none}
   .venture-grid>li{scroll-snap-align:start}
   .venture-stage{height:300px}

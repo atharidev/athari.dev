@@ -85,11 +85,9 @@ Until SMTP is configured, the endpoint returns `ready:false` and POST 503. The p
 
 The owner requested removing the interactive demos beneath the venture logos because the real products already demonstrate the work. This supersedes earlier instructions to preserve the demo section on the main ar/en pages. Keep the five-logo marquee, and use the short three-service overview in `offerings.css` at `#showcase`, with one contact link. Main ar/en pages no longer load `showcase.js`. Retained demo source and tests are historical, not a requirement to restore the demos. Keep the existing approach section, language navigation, artwork, contact form and mail delivery behavior. Verify static layout, anchor links, and Arabic/English mobile parity for changes to the overview; demo interaction tests do not apply to this retired UI.
 
-## Hamra rebrand — 2026-10-29
+## HAMRA retired — 2026-11-24 (current owner decision)
 
-The owner renamed Sidor to HAMRA / حمرا / חמרה. Preserve the shared outlined SVG artwork at assets/hamra-logo.svg and the identical venture-hamra symbol in ar/en. Use hamra.athari.dev for the venture link. The frontend remains minimal and trilingual; the API retains legacy Sidor origins plus the two exact Hamra origins.
-
-- Current owner correction: the Hamra identity is a single English HAMRA wordmark. Its first letter is the styled angular orange H with a slanted crossbar, followed by cream AMRA. Never show a standalone H beside a second H in HAMRA. Do not add Arabic or Hebrew brand lettering to either site logo. The landing-page language options stay Arabic, Hebrew, and English.
+The owner removed HAMRA (formerly Sidor) entirely. Do not restore its card, logo, screenshots, link or contact-API origins.
 
 ## Sabab-family refinement — 2026-11-24 (current owner decision)
 
@@ -97,7 +95,8 @@ The owner asked for the main site to share Sabab's look and feel. This supersede
 
 - `theme.js` (blocking, in `<head>`) sets `data-theme` before first paint: the saved `athari-theme`, otherwise the device's light/dark preference. `refine.js` owns the toggle and follows device changes until a visitor chooses. Light is warm paper (`#f2f0e8`) with graphite ink and deep sage; the living ripple draws in ink on paper (`site.js` reads `data-theme` and redraws on the `athari-theme` event). The gateway, QR and extra-locale pages stay graphite-only.
 - Header: brand, theme toggle and the round language globe together at the start; quiet section links; one "Let’s talk" pill at the end. The globe is the same control as the Sabab app/site (meridians turn a quarter on arrival, open and answer; nothing loops). It lists Arabic and English only; its links keep `data-language`, so `language.js` still remembers the choice and carries the hash. Without JavaScript the globe stays open.
-- Ventures are cards with real phone screenshots in `assets/ventures/screens/` (Arabic and English where the product has both). The card stage stays graphite in both themes, so every brand keeps its own logo colours (HAMRA stays orange H + cream AMRA). Logo symbols remain the inline `<symbol>`s; `.venture-mark` forces LTR so SVG wordmarks never reverse on Arabic pages. Re-capture screenshots when a product's first screen changes visibly. `ventures.css`/`ventures.js` are retired from these pages.
+- Ventures are cards with real phone screenshots in `assets/ventures/screens/` (Arabic and English where the product has both). The card stage stays graphite in both themes, so every brand keeps its own logo colours . Logo symbols remain the inline `<symbol>`s; `.venture-mark` forces LTR so SVG wordmarks never reverse on Arabic pages. Re-capture screenshots when a product's first screen changes visibly. `ventures.css`/`ventures.js` are retired from these pages.
 - Services use line icons drawn once in ink (`[data-ink]`, paths with `pathLength="1"`); the approach steps share one drawn line. Reduced motion shows everything at rest.
+- The last card is the open seat («مشروعك» / Your project): an ink wireframe that sketches itself, types its title and fills its button once, linking to `#connect` and preselecting Business only when nothing is chosen. On narrow windows the cards are a sideways rail; mice get arrow buttons (`any-pointer: fine`) and drag, touch swipes natively.
 - Creator | Business is one segmented control (CSS only); the values stay `Creator`/`Business`.
 - All of this lives in `refine.css`, loaded last. Checks: `node --check theme.js refine.js site.js`, `node --test tests/*.test.cjs`, then look at ar/en × light/dark × phone/desktop.

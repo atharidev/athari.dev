@@ -76,16 +76,10 @@ test('Sabab tokens cannot be used from another allowed origin', async () => {
 });
 
 
-test('Hamra and legacy Sidor contractor and owner enquiries preserve exact origin, fixed recipient, and callback details', async () => {
- for (const sidorOrigin of ['https://sidor.athari.dev','https://sidor.vercel.app','https://sidor.athridev.chatgpt.site','https://hamra.athari.dev','https://hamra.athridev.chatgpt.site']) {
-  for (const collaboration of ['Business','Creator']) {
-   const s=setup(); const options=await s.OPTIONS(new Request(url,{method:'OPTIONS',headers:{origin:sidorOrigin}}));
-   assert.equal(options.status,204); assert.equal(options.headers.get('Access-Control-Allow-Origin'),sidorOrigin);
-   const {token}=await(await s.GET(new Request(url,{headers:{origin:sidorOrigin}}))).json();s.advance(1600);
-   const message='Sidor — '+collaboration+'\nPhone: +972501234567\nArea: Tira\nEquipment: Tracked excavator';
-   const r=await s.POST(request({...fields(token),collaboration,message},{origin:sidorOrigin}));
-   assert.equal(r.status,200);assert.equal(s.sent[0].message.to,'adam@athari.dev');assert.ok(s.sent[0].message.text.includes(message));
-   assert.equal((await s.POST(request(fields(token)))).status,400);
-  }
+test('Retired HAMRA and Sidor origins are refused', async () => {
+ for (const origin of ['https://sidor.athari.dev','https://sidor.vercel.app','https://sidor.athridev.chatgpt.site','https://hamra.athari.dev','https://hamra.athridev.chatgpt.site']) {
+  const s=setup(); const options=await s.OPTIONS(new Request(url,{method:'OPTIONS',headers:{origin}}));
+  assert.equal(options.headers.get('Access-Control-Allow-Origin'),null);
+  assert.notEqual((await s.GET(new Request(url,{headers:{origin}}))).status,200);
  }
 });

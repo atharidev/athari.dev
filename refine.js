@@ -87,6 +87,59 @@
     onScroll();
   }
 
+  // ---------- ventures rail ----------
+  // On narrow windows the cards become a sideways row. Touch swipes natively; a mouse gets arrows and drag.
+  const rail = document.querySelector('.venture-grid');
+  const nav = document.querySelector('.rail-nav');
+  if (rail && nav) {
+    const fine = window.matchMedia('(any-pointer: fine)');
+    const buttons = nav.querySelectorAll('[data-rail]');
+    const rtl = () => getComputedStyle(rail).direction === 'rtl';
+    const sync = () => {
+      const max = rail.scrollWidth - rail.clientWidth;
+      nav.hidden = !(fine.matches && max > 4);
+      const at = Math.abs(rail.scrollLeft);
+      buttons.forEach(b => { b.disabled = b.dataset.rail === '-1' ? at < 4 : at > max - 4; });
+    };
+    const card = () => (rail.firstElementChild ? rail.firstElementChild.getBoundingClientRect().width + 12 : rail.clientWidth * .8);
+    buttons.forEach(b => b.addEventListener('click', () => {
+      const step = Number(b.dataset.rail) * card() * (rtl() ? -1 : 1);
+      rail.scrollBy({ left: step, behavior: still ? 'auto' : 'smooth' });
+    }));
+    // Drag with the mouse; a drag never counts as a click on the card under it.
+    let down = null, moved = false;
+    rail.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse' || e.button !== 0 || rail.scrollWidth <= rail.clientWidth) return;
+      down = { x: e.clientX, left: rail.scrollLeft }; moved = false;
+    });
+    window.addEventListener('pointermove', e => {
+      if (!down) return;
+      const dx = e.clientX - down.x;
+      if (!moved && Math.abs(dx) > 5) { moved = true; rail.classList.add('dragging'); }
+      if (moved) rail.scrollLeft = down.left - dx;
+    });
+    const release = () => {
+      if (!down) return;
+      down = null;
+      if (moved) requestAnimationFrame(() => rail.classList.remove('dragging'));
+    };
+    window.addEventListener('pointerup', release);
+    window.addEventListener('pointercancel', release);
+    rail.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+    rail.addEventListener('dragstart', e => e.preventDefault());
+    rail.addEventListener('scroll', sync, { passive: true });
+    if ('ResizeObserver' in window) new ResizeObserver(sync).observe(rail); else window.addEventListener('resize', sync, { passive: true });
+    fine.addEventListener('change', sync);
+    sync();
+  }
+
+  // The open seat leads to the form as a business enquiry, without touching anything already chosen.
+  document.querySelectorAll('[data-enquire]').forEach(link => link.addEventListener('click', () => {
+    const form = document.querySelector('#collaboration-form');
+    const business = form && form.querySelector('input[value="Business"]');
+    if (business && !form.querySelector('input[name="collaboration"]:checked')) business.checked = true;
+  }));
+
   // ---------- ink: drawn once as each part arrives, then still ----------
   const inks = document.querySelectorAll('[data-ink]');
   if (still || !('IntersectionObserver' in window)) { inks.forEach(el => el.classList.add('inked')); return; }

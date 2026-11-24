@@ -101,10 +101,6 @@ AJobs reuses the owned endpoint and fixed `adam@athari.dev` recipient. The exact
 
 Sabab reuses this endpoint at the exact allowed origin https://sabab.athari.dev. Business/Creator map to businesses posting jobs and freelancers/service providers offering services. Messages are prefixed Sabab and include name, phone/WhatsApp, business/service, optional brief, and the requested registration/onboarding callback. The fixed recipient, credentials and other sites are unchanged. Deployment remains separate from the frontend.
 
-## Sidor early access — 2026-10-24
+## HAMRA retired — 2026-11-24
 
-Sidor uses the same fixed-recipient API from the exact origins https://sidor.athari.dev and https://sidor.athridev.chatgpt.site. Business maps to contractors; Creator maps to equipment and truck owners. Messages include Sidor, role, name, phone/WhatsApp, town/service area, company or equipment, optional notes, chosen language, and a request for launch onboarding. Submissions do not create accounts or book equipment. No additional mail service or database is added. Regression coverage includes both roles and origins, CORS, callback content, fixed recipient, and token isolation. Deploy this backend separately from the Sidor frontend.
-
-## Hamra rebrand — 2026-10-29
-
-Sidor is now Hamra / حمرا / חמרה. The exact Hamra origins https://hamra.athari.dev and https://hamra.athridev.chatgpt.site are allowed alongside the retained Sidor origins. The fixed recipient, role values, SMTP acceptance checks and token isolation remain unchanged. The API must be deployed separately from both frontends.
+The owner retired HAMRA (formerly Sidor). Its origins (`sidor.athari.dev`, `sidor.vercel.app`, `sidor.athridev.chatgpt.site`, `hamra.athari.dev`, `hamra.athridev.chatgpt.site`) are no longer allowed, and a regression test checks they are refused. Deploy the API separately for this to take effect.
